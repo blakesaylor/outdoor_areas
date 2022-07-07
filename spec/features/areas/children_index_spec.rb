@@ -12,7 +12,7 @@ RSpec.describe 'children index', type: :feature do
         climb_2 = area_1.climbs.create!(name: "Guppy", lead:true, sport:true, trad:false, top_rope:false, grade:'5.8', pitches:1)
 
         visit "/areas/#{area_1.id}/climbs"
-
+        
         expect(page).to have_content(climb_1.id)
         expect(page).to have_content(climb_1.name)
         expect(page).to have_content(climb_1.lead)
