@@ -1,39 +1,33 @@
 require 'rails_helper'
 
-RSpec.describe 'areas index', type: :feature do
-    # User Story 1, Parent Index 
-    # For each parent table
+RSpec.describe 'children index', type: :feature do
+    # User Story 5, Parent Children Index 
     # As a visitor
-    # When I visit '/parents'
-    # Then I see the name of each parent record in the system
-    it 'shows the name of each area in system on the index page' do
+    # When I visit '/parents/:parent_id/child_table_name'
+    # Then I see each Child that is associated with that Parent with each Child's attributes:
+    it 'shows each climb and all attributes of climbs associated with an area' do
         area_1 = Area.create!(name:'Clear Creek Canyon', state:'Colorado', rock_climbing: true, elevation: 7400, latitude: 39.741, longitude: -105.41)
         area_2 = Area.create!(name:'Boulder Canyon', state:'Colorado', rock_climbing: true, elevation: 7126, latitude: 40.002, longitude: -105.41)
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky", lead:true, sport:true, trad:false, top_rope:false, grade:'5.8', pitches:4)
+        climb_2 = area_1.climbs.create!(name: "Guppy", lead:true, sport:true, trad:false, top_rope:false, grade:'5.8', pitches:1)
 
-        visit '/areas/'
+        visit "/areas/#{area_1.id}/climbs"
 
-        expect(page).to have_content(area_1.name)
-        expect(page).to have_content(area_2.name)
-    end
+        expect(page).to have_content(climb_1.id)
+        expect(page).to have_content(climb_1.name)
+        expect(page).to have_content(climb_1.lead)
+        expect(page).to have_content(climb_1.sport)
+        expect(page).to have_content(climb_1.trad)
+        expect(page).to have_content(climb_1.top_rope)
+        expect(page).to have_content(climb_1.grade)
+        expect(page).to have_content(climb_1.pitches)
+        expect(page).to have_content(climb_1.created_at)
+        expect(page).to have_content(climb_1.updated_at)
 
-    # User Story 6, Parent Index sorted by Most Recently Created 
-    # As a visitor
-    # When I visit the parent index,
-    # I see that records are ordered by most recently created first
-    # And next to each of the records I see when it was created
-    it 'shows all areas ordered by the created_at column' do
-        area_1 = Area.create!(name:'Clear Creek Canyon', state:'Colorado', rock_climbing: true, elevation: 7400, latitude: 39.741, longitude: -105.41)
-        area_2 = Area.create!(name:'Boulder Canyon', state:'Colorado', rock_climbing: true, elevation: 7126, latitude: 40.002, longitude: -105.41)
+        expect(page).to have_content(climb_2.id)
+        expect(page).to have_content(climb_2.name)
 
-        visit '/areas/'
-
-        within '#area-0' do
-            expect(page).to have_content(area_2.name)
-        end
-
-        within '#area-1' do
-            expect(page).to have_content(area_1.name)
-        end
+        expect(page).to_not have_content(area_2.name)
     end
 
     # User Story 8, Child Index Link
@@ -44,7 +38,7 @@ RSpec.describe 'areas index', type: :feature do
         area_1 = Area.create!(name:'Clear Creek Canyon', state:'Colorado', rock_climbing: true, elevation: 7400, latitude: 39.741, longitude: -105.41)
         climb_1 = area_1.climbs.create!(name: "Playin' Hooky", lead:true, sport:true, trad:false, top_rope:false, grade:'5.8', pitches:4)
 
-        visit '/areas/'
+        visit "/areas/#{area_1.id}/climbs"
 
         expect(page).to have_link('Climbs Index', href: '/climbs')
     end
@@ -57,7 +51,7 @@ RSpec.describe 'areas index', type: :feature do
         area_1 = Area.create!(name:'Clear Creek Canyon', state:'Colorado', rock_climbing: true, elevation: 7400, latitude: 39.741, longitude: -105.41)
         climb_1 = area_1.climbs.create!(name: "Playin' Hooky", lead:true, sport:true, trad:false, top_rope:false, grade:'5.8', pitches:4)
 
-        visit '/areas/'
+        visit "/areas/#{area_1.id}/climbs"
 
         expect(page).to have_link('Areas Index', href: '/areas')
     end

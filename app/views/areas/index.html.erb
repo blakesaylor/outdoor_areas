@@ -1,4 +1,15 @@
+<p><a href="/areas">Areas Index</a></p>
+<p><a href="/climbs">Climbs Index</a></p>
 <h1> Areas </h1>
-<% @areas.each do |area| %>
-    <p><%= area.name %></p>
-<% end %>
+<ul>
+    <% @areas.each_with_index do |area, index| %>
+    <div id="area-<%= index%>">
+        <li><strong>Name: </strong><%= area.name %>
+        <ul>
+            <li>
+                <strong>Created At: </strong><%= area.created_at %>
+            </li>
+        </ul>
+    </div>
+    <% end %>
+<ul>

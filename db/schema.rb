@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_06_233713) do
+ActiveRecord::Schema.define(version: 2022_07_07_041604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,4 +26,19 @@ ActiveRecord::Schema.define(version: 2022_07_06_233713) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "climbs", force: :cascade do |t|
+    t.string "name"
+    t.boolean "lead"
+    t.boolean "sport"
+    t.boolean "trad"
+    t.boolean "top_rope"
+    t.string "grade"
+    t.integer "pitches"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "area_id"
+    t.index ["area_id"], name: "index_climbs_on_area_id"
+  end
+
+  add_foreign_key "climbs", "areas"
 end

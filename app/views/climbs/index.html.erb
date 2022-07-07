@@ -1,0 +1,11 @@
+<p><a href="/areas">Areas Index</a></p>
+<p><a href="/climbs">Climbs Index</a></p>
+<h1>Climbs</h1>
+<ul>
+    <% @climbs.each do |climb| %>
+        <li><strong><%= climb.name %></strong></li>
+        <ul>
+            <li>Created At: <%= climb.created_at %></li>
+        </ul>
+    <% end %>
+</ul>
