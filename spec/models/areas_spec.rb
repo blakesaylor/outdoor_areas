@@ -16,8 +16,8 @@ RSpec.describe Area, type: :model do
     end
 
     describe 'methods' do
-        describe 'sort_by_created_at' do
-            it 'orders restaurants by created_at (most recent first)' do
+        describe 'sort_by_created_datetime' do
+            it 'orders areas by created_at (most recent first)' do
                 area_1 = Area.create!(name:'Clear Creek Canyon', state:'Colorado', rock_climbing: true, elevation: 7400, latitude: 39.741, longitude: -105.41)
                 area_2 = Area.create!(name:'Boulder Canyon', state:'Colorado', rock_climbing: true, elevation: 7126, latitude: 40.002, longitude: -105.41)
 
