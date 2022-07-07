@@ -1,6 +1,6 @@
 class AreasController < ApplicationController
     def index
-        @areas = Area.all
+        @areas = Area.all.sort_by_created_datetime
     end
 
     def show
