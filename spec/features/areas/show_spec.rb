@@ -22,7 +22,6 @@ RSpec.describe 'areas show by id' do
         expect(page).to have_content(area_1.created_at)
         expect(page).to have_content(area_1.updated_at)
 
-        expect(page).to_not have_content(area_2.id)
         expect(page).to_not have_content(area_2.name)
     end
 end
