@@ -8,6 +8,7 @@ RSpec.describe 'areas show by id' do
     # - data from each column that is on the parent table
     it 'shows all of the attributes for an area when viewing /area/:id' do
         area_1 = Area.create!(name:'Clear Creek Canyon', state:'Colorado', rock_climbing: true, elevation: 7400, latitude: 39.741, longitude: -105.41)
+        area_2 = Area.create!(name:'Boulder Canyon', state:'Colorado', rock_climbing: true, elevation: 7126, latitude: 40.002, longitude: -105.41)
 
         visit "/areas/#{area_1.id}"
 
@@ -20,5 +21,15 @@ RSpec.describe 'areas show by id' do
         expect(page).to have_content(area_1.longitude)
         expect(page).to have_content(area_1.created_at)
         expect(page).to have_content(area_1.updated_at)
+
+        expect(page).to_not have_content(area_2.id)
+        expect(page).to_not have_content(area_2.name)
+        expect(page).to_not have_content(area_2.state)
+        expect(page).to_not have_content(area_2.rock_climbing)
+        expect(page).to_not have_content(area_2.elevation)
+        expect(page).to_not have_content(area_2.latitude)
+        expect(page).to_not have_content(area_2.longitude)
+        expect(page).to_not have_content(area_2.created_at)
+        expect(page).to_not have_content(area_2.updated_at)
     end
 end
