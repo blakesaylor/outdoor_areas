@@ -10,7 +10,7 @@ RSpec.describe 'areas index', type: :feature do
         area_1 = Area.create!(name:'Clear Creek Canyon', state:'Colorado', rock_climbing: true, elevation: 7400, latitude: 39.741, longitude: -105.41)
         area_2 = Area.create!(name:'Boulder Canyon', state:'Colorado', rock_climbing: true, elevation: 7126, latitude: 40.002, longitude: -105.41)
 
-        visit '/areas'
+        visit '/areas/'
 
         save_and_open_page
 
