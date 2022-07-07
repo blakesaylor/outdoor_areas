@@ -70,4 +70,18 @@ RSpec.describe 'areas show by id' do
 
         expect(page).to have_link('Areas Index', href: '/areas')
     end
+
+    # User Story 10, Parent Child Index Link
+    # As a visitor
+    # When I visit a parent show page ('/parents/:id')
+    # Then I see a link to take me to that parent's `child_table_name` page ('/parents/:id/child_table_name')
+    it 'has a link that takes the user to the list of climbs for an area' do
+        area_1 = Area.create!(name:'Clear Creek Canyon', state:'Colorado', rock_climbing: true, elevation: 7400, latitude: 39.741, longitude: -105.41)
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky", lead:true, sport:true, trad:false, top_rope:false, grade:'5.8', pitches:4)
+
+        visit "/areas/#{area_1.id}"
+
+        expect(page).to have_link('Areas Index', href: "/areas/#{area_1.id}/climbs")
+
+    end
 end
