@@ -25,4 +25,16 @@ RSpec.describe 'climbs show by id', type: :feature do
 
         expect(page).to_not have_content(climb_2.name)
     end
+
+    # User Story 8, Child Index Link
+    # As a visitor
+    # When I visit any page on the site
+    # Then I see a link at the top of the page that takes me to the Child Index
+    it 'has a link that takes the user to the climbs index' do
+        area_1 = Area.create!(name:'Clear Creek Canyon', state:'Colorado', rock_climbing: true, elevation: 7400, latitude: 39.741, longitude: -105.41)
+
+        visit "/climbs/#{climb_1.id}"
+
+        expect(page).to have_link('Climbs Index', href: '/climbs')
+    end
 end
