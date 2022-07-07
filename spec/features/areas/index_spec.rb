@@ -27,8 +27,6 @@ RSpec.describe 'areas index', type: :feature do
 
         visit '/areas/'
 
-        save_and_open_page
-
         within '#area-0' do
             expect(page).to have_content(area_2.name)
         end
