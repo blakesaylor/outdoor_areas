@@ -12,7 +12,7 @@ RSpec.describe 'children index', type: :feature do
         climb_2 = area_1.climbs.create!(name: "Guppy", lead:true, sport:true, trad:false, top_rope:false, grade:'5.8', pitches:1)
 
         visit "/areas/#{area_1.id}/climbs"
-        
+
         expect(page).to have_content(climb_1.id)
         expect(page).to have_content(climb_1.name)
         expect(page).to have_content(climb_1.lead)
@@ -26,14 +26,6 @@ RSpec.describe 'children index', type: :feature do
 
         expect(page).to have_content(climb_2.id)
         expect(page).to have_content(climb_2.name)
-        expect(page).to have_content(climb_2.lead)
-        expect(page).to have_content(climb_2.sport)
-        expect(page).to have_content(climb_2.trad)
-        expect(page).to have_content(climb_2.top_rope)
-        expect(page).to have_content(climb_2.grade)
-        expect(page).to have_content(climb_2.pitches)
-        expect(page).to have_content(climb_2.created_at)
-        expect(page).to have_content(climb_2.updated_at)
 
         expect(page).to_not have_content(area_2.name)
     end
