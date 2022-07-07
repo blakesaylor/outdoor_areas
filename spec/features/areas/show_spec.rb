@@ -9,7 +9,7 @@ RSpec.describe 'areas show by id' do
     it 'shows all of the attributes for an area when viewing /area/:id' do
         area_1 = Area.create!(name:'Clear Creek Canyon', state:'Colorado', rock_climbing: true, elevation: 7400, latitude: 39.741, longitude: -105.41)
 
-        visit '/areas/:id'
+        visit "/areas/#{area_1.id}"
 
         expect(page).to have_content(area_1.id)
         expect(page).to have_content(area_1.name)
