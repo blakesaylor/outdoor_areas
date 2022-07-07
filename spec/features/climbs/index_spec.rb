@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'climbs index' do
+RSpec.describe 'climbs index', type: :feature do
     # User Story 3, Child Index 
     # As a visitor
     # When I visit '/child_table_name'
