@@ -81,7 +81,7 @@ RSpec.describe 'areas show by id' do
 
         visit "/areas/#{area_1.id}"
 
-        expect(page).to have_link('Areas Index', href: "/areas/#{area_1.id}/climbs")
+        expect(page).to have_link('Climbs in Area', href: "/areas/#{area_1.id}/climbs")
 
     end
 end
