@@ -13,5 +13,5 @@ RSpec.describe 'climbs index', type: :feature do
 
         expect(page).to have_content(climb_1.name)
         expect(page).to have_content(climb_2.name)
-    en2
+    end
 end
