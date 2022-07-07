@@ -2,15 +2,16 @@
 <p><a href="/climbs">Climbs Index</a></p>
 <h1><%= @area.name %></h1>
 <% @climbs.each do |climb| %>
-    <p><strong>ID: </strong><%= climb.id %></p>
-    <p><strong>Name: </strong><%= climb.name %></p>
-    <p><strong>Lead Climbable? </strong><%= climb.lead %></p>
-    <p><strong>Sport Climbable? </strong><%= climb.sport %></p>
-    <p><strong>Trad Climbable? </strong><%= climb.trad %></p>
-    <p><strong>Top Ropeable? </strong><%= climb.top_rope %></p>
-    <p><strong>Grade: </strong><%= climb.grade %></p>
-    <p><strong>Pitches: </strong><%= climb.pitches %></p>
-    <p><strong>Created At: </strong><%= climb.created_at %></p>
-    <p><strong>Updated At: </strong><%= climb.updated_at %></p>
-    <br>
+    <h3><%= climb.name %></h3>
+    <ul>
+        <li><strong>ID: </strong><%= climb.id%></li>
+        <li><strong>Lead Climb? </strong><%= climb.lead %></li>
+        <li><strong>Sport Climb? </strong><%= climb.sport %></li>
+        <li><strong>Trad Climb? </strong><%= climb.trad %></li>
+        <li><strong>Top Ropeable? </strong><%= climb.top_rope %></li>
+        <li><strong>Grade: </strong><%= climb.grade %></li>
+        <li><strong>Pitches: </strong><%= climb.pitches %></li>
+        <li><strong>Created At: </strong><%= climb.created_at %></li>
+        <li><strong>Updated At: </strong><%= climb.updated_at %></li>
+    </ul>
 <% end %>

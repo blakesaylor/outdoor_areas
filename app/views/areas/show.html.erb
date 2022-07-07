@@ -1,12 +1,14 @@
 <p><a href="/areas">Areas Index</a></p>
 <p><a href="/climbs">Climbs Index</a></p>
 <h1><%= @area.name %></h1>
-<p><strong>ID: </strong><%= @area.id%></p>
-<p><strong>Number of Climbs: </strong><%= @area.count_of_climbs %></p>
-<p><strong>State: </strong><%= @area.state %></p>
-<p><strong>Has Climbing? </strong><%= @area.rock_climbing %></p>
-<p><strong>Elevation: </strong><%= @area.elevation %></p>
-<p><strong>Latitude: </strong><%= @area.latitude %></p>
-<p><strong>Longitude: </strong><%= @area.longitude %></p>
-<p><strong>Created At: </strong><%= @area.created_at %></p>
-<p><strong>Updated At: </strong><%= @area.updated_at %></p>
+<ul>
+    <li><strong>ID: </strong><%= @area.id%></li>
+    <li><strong>Number of Climbs: </strong><%= @area.count_of_climbs %></li>
+    <li><strong>State: </strong><%= @area.state %></li>
+    <li><strong>Has Climbing? </strong><%= @area.rock_climbing %></li>
+    <li><strong>Elevation: </strong><%= @area.elevation %></li>
+    <li><strong>Latitude: </strong><%= @area.latitude %></li>
+    <li><strong>Longitude: </strong><%= @area.longitude %></li>
+    <li><strong>Created At: </strong><%= @area.created_at %></li>
+    <li><strong>Updated At: </strong><%= @area.updated_at %></li>
+</ul>
