@@ -10,4 +10,8 @@ class Area < ApplicationRecord
     def self.sort_by_created_datetime
         order(created_at: :desc)
     end
+
+    def count_of_climbs
+        climbs.count
+    end
 end
