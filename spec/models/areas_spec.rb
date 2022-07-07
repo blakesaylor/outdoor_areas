@@ -27,5 +27,17 @@ RSpec.describe Area, type: :model do
                 expect(areas.sort_by_created_datetime).to eq [area_2, area_1]
             end
         end
+
+        describe 'count_of_climbs' do
+            it 'returns a count of climbs in an area' do
+                area_1 = Area.create!(name:'Clear Creek Canyon', state:'Colorado', rock_climbing: true, elevation: 7400, latitude: 39.741, longitude: -105.41)
+                area_2 = Area.create!(name:'Boulder Canyon', state:'Colorado', rock_climbing: true, elevation: 7126, latitude: 40.002, longitude: -105.41)
+                climb_1 = area_1.climbs.create!(name: "Playin' Hooky", lead:true, sport:true, trad:false, top_rope:false, grade:'5.8', pitches:4)
+                climb_2 = area_1.climbs.create!(name: "Guppy", lead:true, sport:true, trad:false, top_rope:false, grade:'5.8', pitches:1)
+
+                expect(area_1.count_of_climbs).to eq 2
+                expect(area_2.count_of_climbs).to eq 0
+            end
+        end
     end
 end
