@@ -24,12 +24,5 @@ RSpec.describe 'areas show by id' do
 
         expect(page).to_not have_content(area_2.id)
         expect(page).to_not have_content(area_2.name)
-        expect(page).to_not have_content(area_2.state)
-        expect(page).to_not have_content(area_2.rock_climbing)
-        expect(page).to_not have_content(area_2.elevation)
-        expect(page).to_not have_content(area_2.latitude)
-        expect(page).to_not have_content(area_2.longitude)
-        expect(page).to_not have_content(area_2.created_at)
-        expect(page).to_not have_content(area_2.updated_at)
     end
 end
