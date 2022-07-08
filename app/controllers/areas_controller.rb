@@ -16,13 +16,17 @@ class AreasController < ApplicationController
     end
 
     def create
-        Area.create(name: params[:name],
-                    state: params[:state],
-                    rock_climbing: params[:rock_climbing],
-                    elevation: params[:elevation],
-                    latitude: params[:latitude],
-                    longitude: params[:longitude]    
-                )
+        Area.create(area_params)
         redirect_to '/areas'
+    end
+
+    private
+    def area_params
+        params.permit(  :name, 
+                        :state, 
+                        :rock_climbing, 
+                        :elevation, 
+                        :latitude, 
+                        :longitude)
     end
 end
