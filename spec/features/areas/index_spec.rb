@@ -61,4 +61,25 @@ RSpec.describe 'areas index', type: :feature do
 
         expect(page).to have_link('Areas Index', href: '/areas')
     end
+
+    # User Story 11, Parent Creation 
+    # As a visitor
+    # When I visit the Parent Index page
+    # Then I see a link to create a new Parent record, "New Parent"
+    # When I click this link
+    # Then I am taken to '/parents/new' where I  see a form for a new parent record
+    # When I fill out the form with a new parent's attributes:
+    # And I click the button "Create Parent" to submit the form
+    # Then a `POST` request is sent to the '/parents' route,
+    # a new parent record is created,
+    # and I am redirected to the Parent Index page where I see the new Parent displayed.
+    it 'has a link that takes a user to a page to add a new area' do
+        area_1 = Area.create!(name:'Clear Creek Canyon', state:'Colorado', rock_climbing: true, elevation: 7400, latitude: 39.741, longitude: -105.41)
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky", lead:true, sport:true, trad:false, top_rope:false, grade:'5.8', pitches:4)
+
+        visit '/areas/'
+        save_and_open_page
+
+        expect(page).to have_link('New Area', href: '/areas/new')
+    end
 end
