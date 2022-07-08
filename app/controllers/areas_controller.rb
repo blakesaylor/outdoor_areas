@@ -20,6 +20,16 @@ class AreasController < ApplicationController
         redirect_to '/areas'
     end
 
+    def edit
+        @area = Area.find(params[:id])
+    end
+
+    def update
+        @area = Area.find(params[:id])
+        @area.update(area_params)
+        redirect_to "/areas/#{@area.id}"
+    end
+
     private
     def area_params
         params.permit(  :name, 
