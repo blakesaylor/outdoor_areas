@@ -1,21 +1,46 @@
+<h1>Create New Area</h1>
 <%= form_with url: "/areas", method: :post, local: true do |form| %>
-  <%= form.label :name %>
-  <%= form.text_field :name %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
   <br>
-  <%= form.label :state %>
-  <%= form.text_field :state %>
+  
+  <div>
+    <%= form.label :state %>
+    <%= form.text_field :state %>
+  </div>
+
   <br>
-  <%= form.label 'Has Rock Climbing?' %>
-  <%= form.check_box :rock_climbing %>
+  
+  <div>
+    <%= form.label 'Has Rock Climbing?' %>
+    <%= form.check_box :rock_climbing %>
+  </div>
+
   <br>
-  <%= form.label :elevation %>
-  <%= form.text_field :elevation %>
+  
+  <div>
+    <%= form.label :elevation %>
+    <%= form.text_field :elevation %>
+  </div>
+
   <br>
-  <%= form.label :latitude %>
-  <%= form.text_field :latitude %>
+  
+  <div>
+    <%= form.label :latitude %>
+    <%= form.text_field :latitude %>
+  </div>
+
   <br>
-  <%= form.label :longitude %>
-  <%= form.text_field :longitude %>
+  
+  <div>
+    <%= form.label :longitude %>
+    <%= form.text_field :longitude %>
+  </div>
+
   <br>
+  
   <%= form.submit 'Create Area' %>
 <% end %>
