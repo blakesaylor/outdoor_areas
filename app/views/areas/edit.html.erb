@@ -2,42 +2,42 @@
 <%= form_with url: "/areas/#{@area.id}", method: :patch, local: true do |form| %>
   <div>
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, value: @area.name %>
   </div>
 
   <br>
 
   <div>
     <%= form.label :state %>
-    <%= form.text_field :state %>
+    <%= form.text_field :state, value: @area.state %>
   </div>
 
   <br>
 
   <div>
     <%= form.label 'Has Rock Climbing?' %>
-    <%= form.check_box :rock_climbing %>
+    <%= form.check_box :rock_climbing, checked: @area.rock_climbing %>
   </div>
 
   <br>
   
   <div>
     <%= form.label :elevation %>
-    <%= form.text_field :elevation %>
+    <%= form.text_field :elevation, value: @area.elevation %>
   </div>
 
   <br>
   
   <div>
     <%= form.label :latitude %>
-    <%= form.text_field :latitude %>
+    <%= form.text_field :latitude, value: @area.latitude %>
   </div>
 
   <br>
   
   <div>
     <%= form.label :longitude %>
-    <%= form.text_field :longitude %>
+    <%= form.text_field :longitude, value: @area.longitude %>
   </div>
 
   <br>
