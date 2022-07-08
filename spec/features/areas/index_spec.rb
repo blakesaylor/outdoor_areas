@@ -74,11 +74,7 @@ RSpec.describe 'areas index', type: :feature do
     # a new parent record is created,
     # and I am redirected to the Parent Index page where I see the new Parent displayed.
     it 'has a link that takes a user to a page to add a new area' do
-        area_1 = Area.create!(name:'Clear Creek Canyon', state:'Colorado', rock_climbing: true, elevation: 7400, latitude: 39.741, longitude: -105.41)
-        climb_1 = area_1.climbs.create!(name: "Playin' Hooky", lead:true, sport:true, trad:false, top_rope:false, grade:'5.8', pitches:4)
-
         visit '/areas/'
-        save_and_open_page
 
         expect(page).to have_link('New Area', href: '/areas/new')
     end
