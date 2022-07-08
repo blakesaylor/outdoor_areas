@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   get '/areas/new', to: 'areas#new'
   post '/areas', to: 'areas#create'
   get '/areas/:id', to: 'areas#show'
+  get '/areas/:id/edit', to: 'areas#edit'
+  patch '/areas/:id', to: 'areas#update'
+  get '/areas/:id/climbs', to: 'areas#show_area_climbs'
   get '/climbs', to: 'climbs#index'
   get '/climbs/:id', to: 'climbs#show'
-  get '/areas/:id/climbs', to: 'areas#show_area_climbs'
 end
