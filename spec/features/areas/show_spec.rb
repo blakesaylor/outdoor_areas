@@ -37,6 +37,7 @@ RSpec.describe 'areas show by id' do
 
         visit "areas/#{area_1.id}"
 
+        expect(page).to have_content('Number of Climbs: ' + area_1.count_of_climbs.to_s)
         expect(area_1.count_of_climbs).to eq 2
 
         visit "areas/#{area_2.id}"
@@ -83,5 +84,24 @@ RSpec.describe 'areas show by id' do
 
         expect(page).to have_link('Climbs in Area', href: "/areas/#{area_1.id}/climbs")
 
+    end
+
+    # User Story 12, Parent Update 
+    # As a visitor
+    # When I visit a parent show page
+    # Then I see a link to update the parent "Update Parent"
+    # When I click the link "Update Parent"
+    # Then I am taken to '/parents/:id/edit' where I  see a form to edit the parent's attributes:
+    # When I fill out the form with updated information
+    # And I click the button to submit the form
+    # Then a `PATCH` request is sent to '/parents/:id',
+    # the parent's info is updated,
+    # and I am redirected to the Parent's Show page where I see the parent's updated info
+    it 'has a link that takes the user to a page where they can edit climbs' do
+        area_1 = Area.create!(name:'Clear Creek Canyon', state:'Colorado', rock_climbing: true, elevation: 7400, latitude: 39.741, longitude: -105.41)
+
+        visit "/areas/#{area_1.id}"
+
+        expect(page).to have_link('Edit Area', href: "/areas/#{area_1.id}/edit")
     end
 end
