@@ -13,18 +13,7 @@ RSpec.describe 'children index', type: :feature do
 
         visit "/areas/#{area_1.id}/climbs"
 
-        expect(page).to have_content(climb_1.id)
         expect(page).to have_content(climb_1.name)
-        expect(page).to have_content(climb_1.lead)
-        expect(page).to have_content(climb_1.sport)
-        expect(page).to have_content(climb_1.trad)
-        expect(page).to have_content(climb_1.top_rope)
-        expect(page).to have_content(climb_1.grade)
-        expect(page).to have_content(climb_1.pitches)
-        expect(page).to have_content(climb_1.created_at)
-        expect(page).to have_content(climb_1.updated_at)
-
-        expect(page).to have_content(climb_2.id)
         expect(page).to have_content(climb_2.name)
 
         expect(page).to_not have_content(area_2.name)
@@ -55,4 +44,24 @@ RSpec.describe 'children index', type: :feature do
 
         expect(page).to have_link('Areas Index', href: '/areas')
     end
+
+    # User Story 13, Parent Child Creation 
+    # As a visitor
+    # When I visit a Parent Childs Index page
+    # Then I see a link to add a new adoptable child for that parent "Create Child"
+    # When I click the link
+    # I am taken to '/parents/:parent_id/child_table_name/new' where I see a form to add a new adoptable child
+    # When I fill in the form with the child's attributes:
+    # And I click the button "Create Child"
+    # Then a `POST` request is sent to '/parents/:parent_id/child_table_name',
+    # a new child object/row is created for that parent,
+    # and I am redirected to the Parent Childs Index page where I can see the new child listed
+    # it 'has a link that takes the user to a page to create a new climb' do
+    #     area_1 = Area.create!(name:'Clear Creek Canyon', state:'Colorado', rock_climbing: true, elevation: 7400, latitude: 39.741, longitude: -105.41)
+    #     climb_1 = area_1.climbs.create!(name: "Playin' Hooky", lead:true, sport:true, trad:false, top_rope:false, grade:'5.8', pitches:4)
+
+    #     visit "/areas/#{area_1.id}/climbs"
+
+    #     expect(page).to have_link('New Climb', href: "/areas/#{area_1.id}/climbs/new")
+    # end
 end
