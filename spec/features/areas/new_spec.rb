@@ -30,4 +30,22 @@ RSpec.describe 'create new area' do
         expect(current_path).to eq("/areas")
         expect(page).to have_content('Wichita Wildlife Refuge')
     end
+
+    # User Story 8, Child Index Link
+    # As a visitor
+    # When I visit any page on the site
+    # Then I see a link at the top of the page that takes me to the Child Index
+    it 'has a link that takes the user to the climbs index' do
+        visit '/areas/new'
+        expect(page).to have_link('Climbs Index', href: '/climbs')
+    end
+
+    # User Story 9, Parent Index Link
+    # As a visitor
+    # When I visit any page on the site
+    # Then I see a link at the top of the page that takes me to the Parent Index
+    it 'has a link that takes the user to the areas index' do
+        visit '/areas/new'
+        expect(page).to have_link('Areas Index', href: '/areas')
+    end
 end
