@@ -17,7 +17,7 @@ RSpec.describe 'Edit Area' do
 
         visit "/areas/#{area_1.id}"
 
-        click_link 'Edit Area'
+        click_link 'Update Area'
 
         expect(current_path).to eq("/areas/#{area_1.id}/edit")
 
