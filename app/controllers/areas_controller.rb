@@ -7,11 +7,6 @@ class AreasController < ApplicationController
         @area = Area.find(params[:id])
     end
 
-    def climbs_index
-        @area = Area.find(params[:id])
-        @climbs = @area.climbs
-    end
-
     def new
     end
 
