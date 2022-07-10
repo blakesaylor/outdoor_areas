@@ -1,7 +1,11 @@
 class AreaClimbsController < ApplicationController
     def index
         @area = Area.find(params[:area_id])
-        @climbs = @area.climbs
+        if params[:sort] == 'alpha'
+            @climbs = @area.climbs.alphabetical
+        else
+            @climbs = @area.climbs
+        end
     end
 
     def new
