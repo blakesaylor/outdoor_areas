@@ -8,4 +8,8 @@ class Climb < ApplicationRecord
     def self.show_top_ropeable
         where(top_rope: true)
     end
+
+    def self.alphabetical
+        order(:name)
+    end
 end
