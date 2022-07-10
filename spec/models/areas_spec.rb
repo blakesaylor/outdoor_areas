@@ -33,7 +33,7 @@ RSpec.describe Area, type: :model do
                                         longitude: -105.41)
 
                 areas = Area.all
-
+                                
                 expect(areas).to eq [area_1, area_2]
                 expect(areas.sort_by_created_datetime).to eq [area_2, area_1]
             end
