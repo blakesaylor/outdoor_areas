@@ -13,10 +13,10 @@ RSpec.describe 'climbs index', type: :feature do
                                 latitude: 39.741, 
                                 longitude: -105.41)
 
-        climb_1 = area_1.climbs.create!(name: "Playin' Hooky", 
-                                        top_rope: false, 
-                                        grade:'5.8', 
-                                        pitches:4)
+        # climb_1 = area_1.climbs.create!(name: "Playin' Hooky", 
+        #                                 top_rope: false, 
+        #                                 grade:'5.8', 
+        #                                 pitches:4)
 
         climb_2 = area_1.climbs.create!(name: "Guppy", 
                                         top_rope: true, 
@@ -25,9 +25,7 @@ RSpec.describe 'climbs index', type: :feature do
 
         visit '/climbs'
 
-        save_and_open_page
-
-        expect(page).to have_content(climb_1.name)
+        # expect(page).to have_content(climb_1.name)
         expect(page).to have_content(climb_2.name)
     end
 
@@ -96,5 +94,10 @@ RSpec.describe 'climbs index', type: :feature do
                                         top_rope: true, 
                                         grade:'5.9', 
                                         pitches:1)
+
+        visit '/climbs'
+
+        expect(page).to_not have_content(climb_1.name)
+        expect(page).to have_content(climb_2.name)
     end
 end
