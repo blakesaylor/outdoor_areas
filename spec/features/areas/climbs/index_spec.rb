@@ -181,4 +181,36 @@ RSpec.describe 'area climbs index', type: :feature do
             expect(page).to have_content(climb_1.name)
         end
     end
+
+    # User Story 18, Child Update From Childs Index Page 
+    # As a visitor
+    # When I visit the `child_table_name` index page or a parent `child_table_name` index page
+    # Next to every child, I see a link to edit that child's info
+    # When I click the link
+    # I should be taken to that `child_table_name` edit page where I can update its information just like in User Story 11
+    it 'has links to edit climb information' do
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+
+        climb_1 = area_1.climbs.create!(name: "Staff", 
+                                        top_rope: true, 
+                                        grade:'5.9', 
+                                        pitches:1)
+
+        visit "areas/#{area_1.id}/climbs"
+
+        save_and_open_page
+
+        within '#climb-0' do
+            expect(page).to have_link('Edit Climb', href: "/climbs/#{climb_1.id}/edit")
+
+            click_link 'Edit Climb'
+
+            expect(current_path).to eq("/climbs/#{climb_1.id}/edit")
+        end
+    end
 end
