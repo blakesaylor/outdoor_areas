@@ -1,0 +1,20 @@
+<a href="/areas">Areas Index</a> | <a href="/climbs">Climbs Index</a>
+<h1>Climbs in <%= @area.name %></h1>
+<a href="/areas/<%= @area.id %>/climbs?sort=alpha">Display in Alphabetical Order</a>
+<div>
+    <% @climbs.each_with_index do |climb, index| %>
+        <div id="climb-<%= index %>">
+        <p><strong style="font-size:125%;"><%= climb.name %></strong> | <a href="/climbs/<%="#{climb.id}"%>/edit">Edit Climb</a></p>
+        <ul>
+            <li><strong>ID: </strong><%= climb.id%></li>
+            <li><strong>Top Ropeable? </strong><%= climb.top_rope %></li>
+            <li><strong>Grade: </strong><%= climb.grade %></li>
+            <li><strong>Pitches: </strong><%= climb.pitches %></li>
+            <li><strong>Created At: </strong><%= climb.created_at %></li>
+            <li><strong>Updated At: </strong><%= climb.updated_at %></li>
+        </ul>
+        </div>
+    <% end %>
+</div>
+<br>
+<a href="/areas/<%= @area.id %>/climbs/new">Create Climb</a>

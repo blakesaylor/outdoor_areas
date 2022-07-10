@@ -1,26 +1,12 @@
-<p><a href="/areas">Areas Index</a></p>
-<p><a href="/climbs">Climbs Index</a></p>
+<a href="/areas">Areas Index</a> | <a href="/climbs">Climbs Index</a>
 <h1><%= @climb.name %></h1>
 <ul>
     <li><strong>ID: </strong><%= @climb.id%></li>
     <li><strong>Name: </strong><%= @climb.name %></li>
-    <li><strong>Lead Climb? </strong><%= @climb.lead %></li>
-    <li><strong>Sport Climb? </strong><%= @climb.sport %></li>
-    <li><strong>Trad Climb? </strong><%= @climb.trad %></li>
     <li><strong>Top Ropeable? </strong><%= @climb.top_rope %></li>
     <li><strong>Grade: </strong><%= @climb.grade %></li>
     <li><strong>Pitches: </strong><%= @climb.pitches %></li>
     <li><strong>Created At: </strong><%= @climb.created_at %></li>
     <li><strong>Updated At: </strong><%= @climb.updated_at %></li>
 </ul>
-
-
-
-
-
-
-
-
-
-
-
+<p><a href="/climbs/<%= "#{@climb.id}" %>/edit">Update Climb</a></p>

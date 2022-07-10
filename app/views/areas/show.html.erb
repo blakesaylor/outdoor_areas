@@ -1,7 +1,6 @@
-<p><a href="/areas">Areas Index</a></p>
-<p><a href="/climbs">Climbs Index</a></p>
-<p><a href="/areas/<%= "#{@area.id}" %>/climbs"">Climbs in Area</a></p>
+<a href="/areas">Areas Index</a> | <a href="/climbs">Climbs Index</a>
 <h1><%= @area.name %></h1>
+<h3><a href="/areas/<%= "#{@area.id}" %>/climbs"">Climbs in Area</a></h3>
 <ul>
     <li><strong>ID: </strong><%= @area.id%></li>
     <li><strong>Number of Climbs: </strong><%= @area.count_of_climbs %></li>
@@ -13,3 +12,4 @@
     <li><strong>Created At: </strong><%= @area.created_at %></li>
     <li><strong>Updated At: </strong><%= @area.updated_at %></li>
 </ul>
+<p><a href="/areas/<%= "#{@area.id}" %>/edit">Update Area</a></p>

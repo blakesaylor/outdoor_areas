@@ -1,0 +1,33 @@
+<a href="/areas">Areas Index</a> | <a href="/climbs">Climbs Index</a>
+<h1>Create New Climb in <%= @area.name %></h1>
+<%= form_with url: "/areas/#{@area.id}/climbs", method: :post, local: true do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <br>
+  
+  <div>
+    <%= form.label :top_rope, 'Top Ropeable?' %>
+    <%= form.check_box :top_rope %>
+  </div>
+
+  <br>
+  
+  <div>
+    <%= form.label :grade, 'Grade: ' %>
+    <%= form.text_field :grade %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= form.label :pitches, 'Pitches: ' %>
+    <%= form.text_field :pitches %>
+  </div>
+
+  <br>
+  
+  <%= form.submit 'Create Climb' %>
+<% end %>

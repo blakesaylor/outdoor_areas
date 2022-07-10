@@ -1,10 +1,9 @@
-<p><a href="/areas">Areas Index</a></p>
-<p><a href="/climbs">Climbs Index</a></p>
+<a href="/areas">Areas Index</a> | <a href="/climbs">Climbs Index</a>
 <h1> Areas </h1>
 <ul>
     <% @areas.each_with_index do |area, index| %>
-    <div id="area-<%= index%>">
-        <li><strong>Name: </strong><%= area.name %>
+    <div id="area-<%=index%>">
+        <li><strong>Name: </strong><%= area.name %> | <a href="/areas/<%="#{area.id}"%>/edit">Edit Area</a></li>
         <ul>
             <li>
                 <strong>Created At: </strong><%= area.created_at %>
@@ -12,4 +11,6 @@
         </ul>
     </div>
     <% end %>
-<ul>
+</ul>
+<br>
+<p><a href="/areas/new">New Area</a></p>

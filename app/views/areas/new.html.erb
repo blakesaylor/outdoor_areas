@@ -1,0 +1,47 @@
+<a href="/areas">Areas Index</a> | <a href="/climbs">Climbs Index</a>
+<h1>Create New Area</h1>
+<%= form_with url: "/areas", method: :post, local: true do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <br>
+  
+  <div>
+    <%= form.label :state %>
+    <%= form.text_field :state %>
+  </div>
+
+  <br>
+  
+  <div>
+    <%= form.label 'Has Rock Climbing?' %>
+    <%= form.check_box :rock_climbing %>
+  </div>
+
+  <br>
+  
+  <div>
+    <%= form.label :elevation %>
+    <%= form.text_field :elevation %>
+  </div>
+
+  <br>
+  
+  <div>
+    <%= form.label :latitude %>
+    <%= form.text_field :latitude %>
+  </div>
+
+  <br>
+  
+  <div>
+    <%= form.label :longitude %>
+    <%= form.text_field :longitude %>
+  </div>
+
+  <br>
+  
+  <%= form.submit 'Create Area' %>
+<% end %>
