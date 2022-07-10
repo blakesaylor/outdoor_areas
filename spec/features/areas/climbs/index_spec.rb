@@ -21,14 +21,14 @@ RSpec.describe 'area climbs index', type: :feature do
                                 longitude: -105.41)
 
         climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
-                                        top_rope:false,    
-                                        grade:'5.8', 
-                                        pitches:4)
+                                        top_rope: false,    
+                                        grade: '5.8', 
+                                        pitches: 4)
 
         climb_2 = area_1.climbs.create!(name: "Guppy", 
-                                        top_rope:false, 
-                                        grade:'5.8', 
-                                        pitches:1)
+                                        top_rope: true, 
+                                        grade: '5.8', 
+                                        pitches: 1)
 
         visit "/areas/#{area_1.id}/climbs"
 

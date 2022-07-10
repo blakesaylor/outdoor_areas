@@ -18,9 +18,9 @@ RSpec.describe 'climbs edit', type: :feature do
                                 elevation: 7400, 
                                 latitude: 39.741, 
                                 longitude: -105.41)
-                                
+
         climb_1 = area_1.climbs.create!(name: "Playin' Hooky", 
-                                        top_rope:false, 
+                                        top_rope: false, 
                                         grade:'5.8', 
                                         pitches:4)
 

@@ -14,16 +14,18 @@ RSpec.describe 'climbs index', type: :feature do
                                 longitude: -105.41)
 
         climb_1 = area_1.climbs.create!(name: "Playin' Hooky", 
-                                        top_rope:false, 
+                                        top_rope: false, 
                                         grade:'5.8', 
                                         pitches:4)
 
         climb_2 = area_1.climbs.create!(name: "Guppy", 
-                                        top_rope:false, 
+                                        top_rope: true, 
                                         grade:'5.8', 
                                         pitches:1)
 
         visit '/climbs'
+
+        save_and_open_page
 
         expect(page).to have_content(climb_1.name)
         expect(page).to have_content(climb_2.name)
@@ -42,7 +44,7 @@ RSpec.describe 'climbs index', type: :feature do
                                 longitude: -105.41)
 
         climb_1 = area_1.climbs.create!(name: "Playin' Hooky", 
-                                        top_rope:false, 
+                                        top_rope: false, 
                                         grade:'5.8', 
                                         pitches:4)
 
@@ -62,9 +64,9 @@ RSpec.describe 'climbs index', type: :feature do
                                 elevation: 7400, 
                                 latitude: 39.741, 
                                 longitude: -105.41)
-                                
+
         climb_1 = area_1.climbs.create!(name: "Playin' Hooky", 
-                                        top_rope:false, 
+                                        top_rope: false, 
                                         grade:'5.8', 
                                         pitches:4)
 
@@ -86,12 +88,12 @@ RSpec.describe 'climbs index', type: :feature do
                                 longitude: -105.41)
 
         climb_1 = area_1.climbs.create!(name: "Playin' Hooky", 
-                                        top_rope:false, 
+                                        top_rope: false, 
                                         grade:'5.8', 
                                         pitches:4)
 
         climb_2 = area_1.climbs.create!(name: "Staff", 
-                                        top_rope:true, 
+                                        top_rope: true, 
                                         grade:'5.9', 
                                         pitches:1)
     end

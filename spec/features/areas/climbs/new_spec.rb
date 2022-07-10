@@ -33,8 +33,7 @@ RSpec.describe 'area climbs new' do
         expect(current_path).to eq("/areas/#{area_1.id}/climbs/new")
 
         fill_in 'name', with: 'Guppy'
-        check 'lead'
-        check 'sport'
+        check 'top_rope'
         fill_in 'grade', with: '5.8'
         fill_in 'pitches', with: '1'
 

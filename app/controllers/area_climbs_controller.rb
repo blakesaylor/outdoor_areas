@@ -17,9 +17,6 @@ class AreaClimbsController < ApplicationController
     private
     def climb_params
         params.permit(  :name, 
-                        :lead, 
-                        :sport, 
-                        :trad, 
                         :top_rope, 
                         :grade,
                         :pitches)

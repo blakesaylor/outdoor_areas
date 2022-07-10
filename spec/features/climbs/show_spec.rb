@@ -12,14 +12,14 @@ RSpec.describe 'climbs show by id', type: :feature do
                                 elevation: 7400, 
                                 latitude: 39.741, 
                                 longitude: -105.41)
-                                
+
         climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
                                         top_rope:false,    
                                         grade:'5.8', 
                                         pitches:4)
 
         climb_2 = area_1.climbs.create!(name: "Guppy", 
-                                        top_rope:false, 
+                                        top_rope: true, 
                                         grade:'5.8', 
                                         pitches:1)
 
@@ -27,9 +27,6 @@ RSpec.describe 'climbs show by id', type: :feature do
 
         expect(page).to have_content(climb_1.id)
         expect(page).to have_content(climb_1.name)
-        expect(page).to have_content(climb_1.lead)
-        expect(page).to have_content(climb_1.sport)
-        expect(page).to have_content(climb_1.trad)
         expect(page).to have_content(climb_1.top_rope)
         expect(page).to have_content(climb_1.grade)
         expect(page).to have_content(climb_1.pitches)
@@ -52,7 +49,7 @@ RSpec.describe 'climbs show by id', type: :feature do
                                 longitude: -105.41)
 
         climb_1 = area_1.climbs.create!(name: "Playin' Hooky", 
-                                        top_rope:false, 
+                                        top_rope: false, 
                                         grade:'5.8', 
                                         pitches:4)
 
@@ -74,7 +71,7 @@ RSpec.describe 'climbs show by id', type: :feature do
                                 longitude: -105.41)
 
         climb_1 = area_1.climbs.create!(name: "Playin' Hooky", 
-                                        top_rope:false, 
+                                        top_rope: false, 
                                         grade:'5.8', 
                                         pitches:4)
 
@@ -102,7 +99,7 @@ RSpec.describe 'climbs show by id', type: :feature do
                                 longitude: -105.41)
 
         climb_1 = area_1.climbs.create!(name: "Playin' Hooky", 
-                                        top_rope:false, 
+                                        top_rope: false, 
                                         grade:'5.8', 
                                         pitches:4)
 

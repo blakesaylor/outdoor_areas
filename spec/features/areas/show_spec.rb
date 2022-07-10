@@ -56,12 +56,12 @@ RSpec.describe 'areas show by id' do
                                 longitude: -105.41)
 
         climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
-                                        top_rope:false,    
+                                        top_rope: false,    
                                         grade:'5.8', 
                                         pitches:4)
 
         climb_2 = area_1.climbs.create!(name: "Guppy", 
-                                        top_rope:false, 
+                                        top_rope: true, 
                                         grade:'5.8', 
                                         pitches:1)
 
@@ -89,7 +89,7 @@ RSpec.describe 'areas show by id' do
                                 longitude: -105.41)
 
         climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
-                                        top_rope:false,    
+                                        top_rope: false,    
                                         grade:'5.8', 
                                         pitches:4)
 
@@ -111,7 +111,7 @@ RSpec.describe 'areas show by id' do
                                 longitude: -105.41)
 
         climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
-                                        top_rope:false,    
+                                        top_rope: false,    
                                         grade:'5.8', 
                                         pitches:4)
 
@@ -133,7 +133,7 @@ RSpec.describe 'areas show by id' do
                                 longitude: -105.41)
 
         climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
-                                        top_rope:false,    
+                                        top_rope: false,    
                                         grade:'5.8', 
                                         pitches:4)
 

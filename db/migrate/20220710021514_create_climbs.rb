@@ -5,6 +5,7 @@ class CreateClimbs < ActiveRecord::Migration[5.2]
       t.boolean :top_rope
       t.string :grade
       t.integer :pitches
+      t.timestamps
     end
   end
 end
