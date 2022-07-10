@@ -110,4 +110,75 @@ RSpec.describe 'area climbs index', type: :feature do
 
         expect(page).to have_link('Create Climb', href: "/areas/#{area_1.id}/climbs/new")
     end
+
+    # User Story 16, Sort Parent's Children in Alphabetical Order by name 
+    # As a visitor
+    # When I visit the Parent's children Index Page
+    # Then I see a link to sort children in alphabetical order
+    # When I click on the link
+    # I'm taken back to the Parent's children Index Page where I see all of the parent's children in alphabetical order
+    it 'has a link to sort the page in alphabetical order' do
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+
+        visit "/areas/#{area_1.id}/climbs"
+
+        expect(page).to have_link('Display in Alphabetical Order', href: "/areas/#{area_1.id}/climbs?sort=alpha")
+    end
+    # User Story 16, Sort Parent's Children in Alphabetical Order by name 
+    # As a visitor
+    # When I visit the Parent's children Index Page
+    # Then I see a link to sort children in alphabetical order
+    # When I click on the link
+    # I'm taken back to the Parent's children Index Page where I see all of the parent's children in alphabetical order
+    it 'can display the climbs in an area in alphabetical order' do
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+
+        area_2 = Area.create!(  name:'Boulder Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7126, 
+                                latitude: 40.002, 
+                                longitude: -105.41)
+
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
+                                        top_rope: false,    
+                                        grade: '5.8', 
+                                        pitches: 4)
+
+        climb_2 = area_1.climbs.create!(name: "Guppy", 
+                                        top_rope: true, 
+                                        grade: '5.8', 
+                                        pitches: 1)
+
+        visit "/areas/#{area_1.id}/climbs"
+
+        #initially un-alphabetized
+        within '#climb-0' do
+            expect(page).to have_content(climb_1.name)
+        end
+
+        within '#climb-1' do
+            expect(page).to have_content(climb_2.name)
+        end
+
+        click_link 'Display in Alphabetical Order'
+
+        within '#climb-0' do
+            expect(page).to have_content(climb_2.name)
+        end
+
+        within '#climb-1' do
+            expect(page).to have_content(climb_1.name)
+        end
+    end
 end
