@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   get '/climbs/:id', to: 'climbs#show'
   get '/climbs/:id/edit', to: 'climbs#edit'
   patch '/climbs/:id', to: 'climbs#update'
+  get '/area/:id/climbs?sort=alpha', to: 'area_climbs#index'
 end
