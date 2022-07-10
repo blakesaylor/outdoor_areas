@@ -6,9 +6,22 @@ RSpec.describe 'climbs index', type: :feature do
     # When I visit '/child_table_name'
     # Then I see each Child in the system including the Child's attributes:
     it 'shows the name of each climb in system on the index page' do
-        area_1 = Area.create!(name:'Clear Creek Canyon', state:'Colorado', rock_climbing: true, elevation: 7400, latitude: 39.741, longitude: -105.41)
-        climb_1 = area_1.climbs.create!(name: "Playin' Hooky", lead:true, sport:true, trad:false, top_rope:false, grade:'5.8', pitches:4)
-        climb_2 = area_1.climbs.create!(name: "Guppy", lead:true, sport:true, trad:false, top_rope:false, grade:'5.8', pitches:1)
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky", 
+                                        top_rope:false, 
+                                        grade:'5.8', 
+                                        pitches:4)
+
+        climb_2 = area_1.climbs.create!(name: "Guppy", 
+                                        top_rope:false, 
+                                        grade:'5.8', 
+                                        pitches:1)
 
         visit '/climbs'
 
@@ -21,8 +34,17 @@ RSpec.describe 'climbs index', type: :feature do
     # When I visit any page on the site
     # Then I see a link at the top of the page that takes me to the Child Index
     it 'has a link that takes the user to the climbs index' do
-        area_1 = Area.create!(name:'Clear Creek Canyon', state:'Colorado', rock_climbing: true, elevation: 7400, latitude: 39.741, longitude: -105.41)
-        climb_1 = area_1.climbs.create!(name: "Playin' Hooky", lead:true, sport:true, trad:false, top_rope:false, grade:'5.8', pitches:4)
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky", 
+                                        top_rope:false, 
+                                        grade:'5.8', 
+                                        pitches:4)
 
         visit '/climbs'
 
@@ -34,8 +56,17 @@ RSpec.describe 'climbs index', type: :feature do
     # When I visit any page on the site
     # Then I see a link at the top of the page that takes me to the Parent Index
     it 'has a link that takes the user to the areas index' do
-        area_1 = Area.create!(name:'Clear Creek Canyon', state:'Colorado', rock_climbing: true, elevation: 7400, latitude: 39.741, longitude: -105.41)
-        climb_1 = area_1.climbs.create!(name: "Playin' Hooky", lead:true, sport:true, trad:false, top_rope:false, grade:'5.8', pitches:4)
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+                                
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky", 
+                                        top_rope:false, 
+                                        grade:'5.8', 
+                                        pitches:4)
 
         visit '/climbs'
 
@@ -53,7 +84,7 @@ RSpec.describe 'climbs index', type: :feature do
                                 elevation: 7400, 
                                 latitude: 39.741, 
                                 longitude: -105.41)
-                                
+
         climb_1 = area_1.climbs.create!(name: "Playin' Hooky", 
                                         top_rope:false, 
                                         grade:'5.8', 

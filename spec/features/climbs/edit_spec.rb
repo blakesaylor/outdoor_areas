@@ -12,8 +12,17 @@ RSpec.describe 'climbs edit', type: :feature do
     # the child's data is updated,
     # and I am redirected to the Child Show page where I see the Child's updated information
     it 'can update a climb' do
-        area_1 = Area.create!(name:'Clear Creek Canyon', state:'Colorado', rock_climbing: true, elevation: 7400, latitude: 39.741, longitude: -105.41)
-        climb_1 = area_1.climbs.create!(name: "Playin' Hooky", lead:true, sport:true, trad:false, top_rope:false, grade:'5.8', pitches:4)
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+                                
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky", 
+                                        top_rope:false, 
+                                        grade:'5.8', 
+                                        pitches:4)
 
         visit "/climbs/#{climb_1.id}"
 

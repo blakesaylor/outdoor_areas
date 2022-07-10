@@ -13,7 +13,12 @@ RSpec.describe 'Edit Area' do
     # the parent's info is updated,
     # and I am redirected to the Parent's Show page where I see the parent's updated info
     it 'I can update an area' do
-        area_1 = Area.create!(name:'Clear Creek Canyon', state:'Colorado', rock_climbing: true, elevation: 7400, latitude: 39.741, longitude: -105.41)
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
 
         visit "/areas/#{area_1.id}"
 
@@ -33,12 +38,17 @@ RSpec.describe 'Edit Area' do
         expect(page).to have_content('Clear Creek')
     end
 
-        # User Story 8, Child Index Link
+    # User Story 8, Child Index Link
     # As a visitor
     # When I visit any page on the site
     # Then I see a link at the top of the page that takes me to the Child Index
     it 'has a link that takes the user to the climbs index' do
-        area_1 = Area.create!(name:'Clear Creek Canyon', state:'Colorado', rock_climbing: true, elevation: 7400, latitude: 39.741, longitude: -105.41)
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
 
         visit "/areas/#{area_1.id}/edit"
         
@@ -50,8 +60,13 @@ RSpec.describe 'Edit Area' do
     # When I visit any page on the site
     # Then I see a link at the top of the page that takes me to the Parent Index
     it 'has a link that takes the user to the areas index' do
-        area_1 = Area.create!(name:'Clear Creek Canyon', state:'Colorado', rock_climbing: true, elevation: 7400, latitude: 39.741, longitude: -105.41)
-        
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+
         visit "/areas/#{area_1.id}/edit"
         
         expect(page).to have_link('Areas Index', href: '/areas')
