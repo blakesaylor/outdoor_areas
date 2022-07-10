@@ -118,4 +118,36 @@ RSpec.describe 'areas index', type: :feature do
 
         expect(page).to have_link('New Area', href: '/areas/new')
     end
+
+    # User Story 17, Parent Update From Parent Index Page 
+    # As a visitor
+    # When I visit the parent index page
+    # Next to every parent, I see a link to edit that parent's info
+    # When I click the link
+    # I should be taken to that parents edit page where I can update its information just like in User Story 4
+    it 'has a button to edit the attributes for an area' do
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+
+        area_2 = Area.create!(  name:'Boulder Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7126, 
+                                latitude: 40.002, 
+                                longitude: -105.41)
+        
+        visit '/areas'
+
+        within '#area-0' do
+            expect(page).to have_link('Edit Area', href: "/areas/#{area_2.id}/edit")
+        end
+
+        within '#area-1' do
+            expect(page).to have_content('Edit Area', href: "/areas/#{area_1.id}/edit")
+        end
+    end
 end
