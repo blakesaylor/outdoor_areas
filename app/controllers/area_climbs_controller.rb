@@ -5,11 +5,13 @@ class AreaClimbsController < ApplicationController
     end
 
     def new
+        @area = Area.find(params[:area_id])
     end
 
     def create
-        @area = Climb.find(params[:id])
+        @area = Area.find(params[:area_id])
         @area.climbs.create(climb_params)
+        redirect_to "/areas/#{@area.id}/climbs"
     end
 
     private

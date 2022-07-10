@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   patch '/areas/:id', to: 'areas#update'
   get '/areas/:area_id/climbs', to: 'area_climbs#index'
   get '/areas/:area_id/climbs/new', to: 'area_climbs#new'
+  post 'areas/:area_id/climbs/', to: 'area_climbs#create'
   get '/climbs', to: 'climbs#index'
   get '/climbs/:id', to: 'climbs#show'
 end
