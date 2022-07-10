@@ -1,6 +1,8 @@
 <a href="/areas">Areas Index</a> | <a href="/climbs">Climbs Index</a>
 <h1>Climbs in <%= @area.name %></h1>
-<% @climbs.each do |climb| %>
+<a href="/areas/<%= @area.id %>/climbs?sort=alpha">Display in Alphabetical Order</a>
+<% @climbs.each_with_index do |climb, index| %>
+    <div id="climb-<%= index %>">
     <h3><%= climb.name %></h3>
     <ul>
         <li><strong>ID: </strong><%= climb.id%></li>
@@ -10,5 +12,6 @@
         <li><strong>Created At: </strong><%= climb.created_at %></li>
         <li><strong>Updated At: </strong><%= climb.updated_at %></li>
     </ul>
+    </div>
 <% end %>
 <a href="/areas/<%= @area.id %>/climbs/new">Create Climb</a>
