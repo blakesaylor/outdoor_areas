@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'children index', type: :feature do
+RSpec.describe 'area climbs index', type: :feature do
     # User Story 5, Parent Children Index 
     # As a visitor
     # When I visit '/parents/:parent_id/child_table_name'
@@ -56,12 +56,12 @@ RSpec.describe 'children index', type: :feature do
     # Then a `POST` request is sent to '/parents/:parent_id/child_table_name',
     # a new child object/row is created for that parent,
     # and I am redirected to the Parent Childs Index page where I can see the new child listed
-    # it 'has a link that takes the user to a page to create a new climb' do
-    #     area_1 = Area.create!(name:'Clear Creek Canyon', state:'Colorado', rock_climbing: true, elevation: 7400, latitude: 39.741, longitude: -105.41)
-    #     climb_1 = area_1.climbs.create!(name: "Playin' Hooky", lead:true, sport:true, trad:false, top_rope:false, grade:'5.8', pitches:4)
+    it 'has a link that takes the user to a page to create a new climb' do
+        area_1 = Area.create!(name:'Clear Creek Canyon', state:'Colorado', rock_climbing: true, elevation: 7400, latitude: 39.741, longitude: -105.41)
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky", lead:true, sport:true, trad:false, top_rope:false, grade:'5.8', pitches:4)
 
-    #     visit "/areas/#{area_1.id}/climbs"
+        visit "/areas/#{area_1.id}/climbs"
 
-    #     expect(page).to have_link('New Climb', href: "/areas/#{area_1.id}/climbs/new")
-    # end
+        expect(page).to have_link('Create Climb', href: "/areas/#{area_1.id}/climbs/new")
+    end
 end
