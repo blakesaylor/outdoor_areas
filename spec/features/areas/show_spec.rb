@@ -72,6 +72,7 @@ RSpec.describe 'areas show by id' do
 
         visit "areas/#{area_2.id}"
 
+        expect(page).to have_content('Number of Climbs: ' + area_2.count_of_climbs.to_s)
         expect(area_2.count_of_climbs).to eq 0
 
     end
