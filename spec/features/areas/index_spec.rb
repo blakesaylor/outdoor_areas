@@ -147,7 +147,7 @@ RSpec.describe 'areas index', type: :feature do
         end
 
         within '#area-1' do
-            expect(page).to have_content('Edit Area', href: "/areas/#{area_1.id}/edit")
+            expect(page).to have_link('Edit Area', href: "/areas/#{area_1.id}/edit")
         end
     end
 end
