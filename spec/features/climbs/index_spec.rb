@@ -41,4 +41,27 @@ RSpec.describe 'climbs index', type: :feature do
 
         expect(page).to have_link('Areas Index', href: '/areas')
     end
+
+    # User Story 15, Child Index only shows `true` Records 
+    # As a visitor
+    # When I visit the child index
+    # Then I only see records where the boolean column is `true`
+    it 'only shows climbs that are top ropeable' do
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+                                
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky", 
+                                        top_rope:false, 
+                                        grade:'5.8', 
+                                        pitches:4)
+
+        climb_2 = area_1.climbs.create!(name: "Staff", 
+                                        top_rope:true, 
+                                        grade:'5.9', 
+                                        pitches:1)
+    end
 end
