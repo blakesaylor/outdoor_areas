@@ -96,7 +96,9 @@ RSpec.describe 'areas show by id' do
 
         visit "/areas/#{area_1.id}"
 
-        expect(page).to have_link('Climbs Index', href: '/climbs')
+        expect(page).to have_link('Climbs Index')
+        click_link 'Climbs Index'
+        expect(current_path).to eq ('/climbs')
     end
 
     # User Story 9, Parent Index Link
@@ -118,7 +120,9 @@ RSpec.describe 'areas show by id' do
 
         visit "/areas/#{area_1.id}"
 
-        expect(page).to have_link('Areas Index', href: '/areas')
+        expect(page).to have_link('Areas Index')
+        click_link 'Areas Index'
+        expect(current_path).to eq ('/areas')
     end
 
     # User Story 10, Parent Child Index Link
