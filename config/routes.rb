@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post '/areas', to: 'areas#create'
   get '/areas/:id', to: 'areas#show'
   get '/areas/:id/edit', to: 'areas#edit'
+  delete '/areas/:id', to: 'areas#destroy'
   patch '/areas/:id', to: 'areas#update'
   get '/areas/:area_id/climbs', to: 'area_climbs#index'
   get '/areas/:area_id/climbs/new', to: 'area_climbs#new'
