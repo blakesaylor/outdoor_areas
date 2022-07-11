@@ -140,9 +140,20 @@ RSpec.describe 'climbs show by id', type: :feature do
                                         grade:'5.8', 
                                         pitches:4)
 
-        visit "/climbs/#{climb_1.id}"
+        climb_2 = area_1.climbs.create!(name: "Guppy", 
+                                        top_rope: true, 
+                                        grade:'5.8', 
+                                        pitches:1)
+
+        visit "/climbs/"
         
-        save_and_open_page
+        # Climb won't show up if top_rope isn't true
+        expect(page).to_not have_content(climb_1.name)
+
+        # Climb will show up if top_rope is true
+        expect(page).to have_content(climb_2.name)
+
+        visit "/climbs/#{climb_2.id}"
         
         expect(page).to have_button('Delete Climb')
 
@@ -150,6 +161,7 @@ RSpec.describe 'climbs show by id', type: :feature do
 
         expect(current_path).to eq '/climbs/'
 
-        expect(page).to_not have_content('Name: ' + climb_1.name)
+        expect(page).to_not have_content(climb_1.name)
+        expect(page).to_not have_content(climb_2.name)
     end
 end
