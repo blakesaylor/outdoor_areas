@@ -141,8 +141,10 @@ RSpec.describe 'climbs show by id', type: :feature do
                                         pitches:4)
 
         visit "/climbs/#{climb_1.id}"
-
-        expect(page).to have_link('Delete Climb')
+        
+        save_and_open_page
+        
+        expect(page).to have_button('Delete Climb')
 
         click_button 'Delete Climb'
 
