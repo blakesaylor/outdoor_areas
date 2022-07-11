@@ -17,6 +17,11 @@ class ClimbsController < ApplicationController
         redirect_to "/climbs/#{@climb.id}"
     end
 
+    def destroy
+        Climb.destroy(params[:id])
+        redirect_to '/climbs/'
+    end
+
     private
     def climb_params
         params.permit(  :name, 
