@@ -1,4 +1,4 @@
-<a href="/areas">Areas Index</a> | <a href="/climbs">Climbs Index</a>
+<%= link_to 'Areas Index', '/areas' %> | <%= link_to 'Climbs Index', '/climbs' %>
 <h1>Create New Area</h1>
 <%= form_with url: "/areas", method: :post, local: true do |form| %>
   <div>
@@ -24,21 +24,21 @@
   
   <div>
     <%= form.label :elevation %>
-    <%= form.text_field :elevation %>
+    <%= form.number_field :elevation %>
   </div>
 
   <br>
   
   <div>
     <%= form.label :latitude %>
-    <%= form.text_field :latitude %>
+    <%= form.number_field :latitude, step: :any %>
   </div>
 
   <br>
   
   <div>
     <%= form.label :longitude %>
-    <%= form.text_field :longitude %>
+    <%= form.number_field :longitude, step: :any %>
   </div>
 
   <br>

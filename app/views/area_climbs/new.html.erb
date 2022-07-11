@@ -1,4 +1,4 @@
-<a href="/areas">Areas Index</a> | <a href="/climbs">Climbs Index</a>
+<%= link_to 'Areas Index', '/areas' %> | <%= link_to 'Climbs Index', '/climbs' %>
 <h1>Create New Climb in <%= @area.name %></h1>
 <%= form_with url: "/areas/#{@area.id}/climbs", method: :post, local: true do |form| %>
   <div>
@@ -24,7 +24,7 @@
 
   <div>
     <%= form.label :pitches, 'Pitches: ' %>
-    <%= form.text_field :pitches %>
+    <%= form.number_field :pitches %>
   </div>
 
   <br>

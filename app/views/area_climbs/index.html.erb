@@ -1,4 +1,4 @@
-<a href="/areas">Areas Index</a> | <a href="/climbs">Climbs Index</a>
+<%= link_to 'Areas Index', '/areas' %> | <%= link_to 'Climbs Index', '/climbs' %>
 <h1>Climbs in <%= @area.name %></h1>
 <a href="/areas/<%= @area.id %>/climbs?sort=alpha">Display in Alphabetical Order</a>
 <div>
@@ -17,4 +17,4 @@
     <% end %>
 </div>
 <br>
-<a href="/areas/<%= @area.id %>/climbs/new">Create Climb</a>
+<%= link_to 'Create Climb', "/areas/#{@area.id}/climbs/new" %>
