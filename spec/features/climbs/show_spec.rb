@@ -108,7 +108,7 @@ RSpec.describe 'climbs show by id', type: :feature do
                                         pitches:4)
 
         visit "climbs/#{climb_1.id}"
-
+        
         expect(page).to have_link('Update Climb', href: "/climbs/#{climb_1.id}/edit")
     end
 
@@ -146,7 +146,7 @@ RSpec.describe 'climbs show by id', type: :feature do
                                         pitches:1)
 
         visit "/climbs/"
-        
+
         # Climb won't show up if top_rope isn't true
         expect(page).to_not have_content(climb_1.name)
 
@@ -163,5 +163,6 @@ RSpec.describe 'climbs show by id', type: :feature do
 
         expect(page).to_not have_content(climb_1.name)
         expect(page).to_not have_content(climb_2.name)
+        expect(Climb.where(id: climb_2.id)).to eq []
     end
 end
