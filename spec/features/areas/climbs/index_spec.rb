@@ -203,8 +203,6 @@ RSpec.describe 'area climbs index', type: :feature do
 
         visit "areas/#{area_1.id}/climbs"
 
-        save_and_open_page
-
         within '#climb-0' do
             expect(page).to have_link('Edit Climb', href: "/climbs/#{climb_1.id}/edit")
 
