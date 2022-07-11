@@ -51,8 +51,10 @@ RSpec.describe 'Edit Area' do
                                 longitude: -105.41)
 
         visit "/areas/#{area_1.id}/edit"
-        
-        expect(page).to have_link('Climbs Index', href: '/climbs')
+
+        expect(page).to have_link('Climbs Index')
+        click_link 'Climbs Index'
+        expect(current_path).to eq ('/climbs')
     end
 
     # User Story 9, Parent Index Link
@@ -69,6 +71,8 @@ RSpec.describe 'Edit Area' do
 
         visit "/areas/#{area_1.id}/edit"
         
-        expect(page).to have_link('Areas Index', href: '/areas')
+        expect(page).to have_link('Areas Index')
+        click_link 'Areas Index'
+        expect(current_path).to eq ('/areas')
     end
 end
