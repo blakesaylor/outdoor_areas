@@ -199,7 +199,7 @@ RSpec.describe 'areas show by id' do
                                         top_rope: false,    
                                         grade:'5.8', 
                                         pitches:4)
-
+        
         visit '/areas'
 
         # Check if area is initially in index
@@ -207,11 +207,14 @@ RSpec.describe 'areas show by id' do
 
         # Visit area show page and click delete
         visit "/areas/#{area_1.id}"
-        expect(page).to have_link('Delete Area')
+        expect(page).to have_button('Delete Area')
         click_button 'Delete Area'
 
         # Check if area is no longer in index
         expect(current_path).to eq '/areas/'
         expect(page).to_not have_content('Name: ' + area_1.name)
+        expect(defined?(area_1)).to eq nil
+        expect(defined?(climb_1)).to eq nil
+
     end
 end
