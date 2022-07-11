@@ -1,4 +1,4 @@
-<a href="/areas">Areas Index</a> | <a href="/climbs">Climbs Index</a>
+<%= link_to 'Areas Index', '/areas' %> | <%= link_to 'Climbs Index', '/climbs' %>
 <h1><%= @area.name %></h1>
 <h3><a href="/areas/<%= "#{@area.id}" %>/climbs"">Climbs in Area</a></h3>
 <ul>
@@ -12,4 +12,4 @@
     <li><strong>Created At: </strong><%= @area.created_at %></li>
     <li><strong>Updated At: </strong><%= @area.updated_at %></li>
 </ul>
-<p><a href="/areas/<%= "#{@area.id}" %>/edit">Update Area</a></p>
+<%= link_to 'Update Area', "/areas/#{area.id}/edit" %>
