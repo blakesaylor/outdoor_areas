@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post 'areas/:area_id/climbs/', to: 'area_climbs#create'
   get '/climbs', to: 'climbs#index'
   get '/climbs/:id', to: 'climbs#show'
+  delete 'climbs/:id', to: 'climbs#destroy'
   get '/climbs/:id/edit', to: 'climbs#edit'
   patch '/climbs/:id', to: 'climbs#update'
   get '/area/:id/climbs?sort=alpha', to: 'area_climbs#index'
