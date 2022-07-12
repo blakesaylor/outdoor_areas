@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get '/areas/:area_id/climbs/new', to: 'area_climbs#new'
   post 'areas/:area_id/climbs/', to: 'area_climbs#create'
   get '/areas/:area_id/climbs?sort=alpha', to: 'area_climbs#index'
-  post '/areas/:area_id/climbs/min_pitches', to: 'area_climbs#index'
+  # post '/areas/:area_id/climbs/min_pitches', to: 'area_climbs#index'
   get '/climbs', to: 'climbs#index'
   get '/climbs/:id', to: 'climbs#show'
   get '/climbs/:id/edit', to: 'climbs#edit'
