@@ -13,3 +13,6 @@
     <li><strong>Updated At: </strong><%= @area.updated_at %></li>
 </ul>
 <%= link_to 'Update Area', "/areas/#{@area.id}/edit" %>
+<br>
+<br>
+<%= button_to 'Delete Area', "/areas/#{@area.id}", method: :delete %>
