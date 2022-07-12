@@ -188,13 +188,6 @@ RSpec.describe 'areas show by id' do
                                 latitude: 39.741, 
                                 longitude: -105.41)
 
-        area_2 = Area.create!(  name:'Boulder Canyon', 
-                                state:'Colorado', 
-                                rock_climbing: true, 
-                                elevation: 7126, 
-                                latitude: 40.002, 
-                                longitude: -105.41)
-
         climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
                                         top_rope: false,    
                                         grade:'5.8', 
@@ -211,10 +204,9 @@ RSpec.describe 'areas show by id' do
         click_button 'Delete Area'
 
         # Check if area is no longer in index
-        expect(current_path).to eq '/areas/'
+        expect(current_path).to eq '/areas'
         expect(page).to_not have_content('Name: ' + area_1.name)
-        expect(defined?(area_1)).to eq nil
-        expect(defined?(climb_1)).to eq nil
-
+        expect(Area.where(id: area_1.id)).to eq []
+        expect(Climb.where(id: climb_1.id)).to eq []
     end
 end
