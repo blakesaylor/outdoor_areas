@@ -2,7 +2,7 @@
 <h1>Climbs in <%= @area.name %></h1>
 <a href="/areas/<%= @area.id %>/climbs?sort=alpha">Display in Alphabetical Order</a>
 
-<%= form_with url: "/areas/#{@area.id}/climbs/min_pitches", method: :post, local: true do |form| %>
+<%= form_with url: "/areas/#{@area.id}/climbs?min_pitches=#{:minimum}", method: :get, local: true do |form| %>
     <div>
         <p>
             Only show climbs with <%= form.number_field :minimum %> or more pitches.
