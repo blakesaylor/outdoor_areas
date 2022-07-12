@@ -25,6 +25,11 @@ class AreasController < ApplicationController
         redirect_to "/areas/#{@area.id}"
     end
 
+    def destroy
+        Area.destroy(params[:id])
+        redirect_to '/areas'
+    end
+
     private
     def area_params
         params.permit(  :name, 
