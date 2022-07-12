@@ -240,15 +240,15 @@ RSpec.describe 'area climbs index', type: :feature do
                                         grade: '5.8', 
                                         pitches: 4)
 
-        
-
         visit "areas/#{area_1.id}/climbs"
 
         expect(page).to have_content('Guppy')
         expect(page).to have_content("Playin' Hooky")
+        expect(page).to have_button('Filter by Pitches')
 
-        fill_in 'pitches', with: 2
-        click_button 'Filter by Pitches'
+        fill_in 'minimum', with: '3'
+
+        click_on 'Filter by Pitches'
 
         expect(page).to_not have_content('Guppy')
         expect(page).to have_content("Playin' Hooky")
