@@ -3,6 +3,8 @@ class AreaClimbsController < ApplicationController
         @area = Area.find(params[:area_id])
         if params[:sort] == 'alpha'
             @climbs = @area.climbs.alphabetical
+        elsif params[:minimum] != nil
+            @climbs = @area.climbs.filter_by_pitches(params[:minimum])
         else
             @climbs = @area.climbs
         end
