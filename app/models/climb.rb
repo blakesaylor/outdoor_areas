@@ -12,4 +12,8 @@ class Climb < ApplicationRecord
     def self.alphabetical
         order(:name)
     end
+
+    def self.filter_by_pitches(filter_value)
+        Climb.where("pitches >= #{filter_value}")
+    end
 end
