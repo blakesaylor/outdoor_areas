@@ -1,5 +1,5 @@
 class Area < ApplicationRecord
-    has_many :climbs
+    has_many :climbs, dependent: :destroy
     validates_presence_of :name 
     validates_presence_of :state 
     validates :rock_climbing, inclusion: [true, false]
