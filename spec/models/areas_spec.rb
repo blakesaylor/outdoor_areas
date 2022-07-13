@@ -69,5 +69,36 @@ RSpec.describe Area, type: :model do
                 expect(area_2.count_of_climbs).to eq 0
             end
         end
+
+        describe 'filter_by_name_exact' do
+            it 'allows for filtering by an exact name search' do
+                area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                        state:'Colorado', 
+                                        rock_climbing: true, 
+                                        elevation: 7400, 
+                                        latitude: 39.741, 
+                                        longitude: -105.41)
+
+                area_2 = Area.create!(  name:'Boulder Canyon', 
+                                        state:'Colorado', 
+                                        rock_climbing: true, 
+                                        elevation: 7126,
+                                        latitude: 40.002, 
+                                        longitude: -105.41)
+
+                climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
+                                                top_rope:false, 
+                                                grade:'5.8', 
+                                                pitches:4)
+
+                climb_2 = area_1.climbs.create!(name: "Guppy", 
+                                                top_rope: true, 
+                                                grade:'5.8', 
+                                                pitches:1)
+
+                expect(Area.all).to eq [area_1, area_2]
+                expect(Area.filter_by_name_exact('Boulder Canyon')).to eq [area_2]
+            end
+        end
     end
 end
