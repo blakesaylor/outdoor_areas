@@ -1,6 +1,10 @@
 class ClimbsController < ApplicationController
     def index
-        @climbs = Climb.all
+        if params[:exact] != nil
+            @climbs = Climb.filter_by_name_exact(params[:exact])
+        else
+            @climbs = Climb.all
+        end
     end
 
     def show
