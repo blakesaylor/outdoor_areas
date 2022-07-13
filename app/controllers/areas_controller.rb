@@ -1,6 +1,10 @@
 class AreasController < ApplicationController
     def index
-        @areas = Area.sort_by_created_datetime
+        if params[:exact] != nil
+            @areas = Area.filter_by_name_exact(params[:exact])
+        else
+            @areas = Area.sort_by_created_datetime
+        end
     end
 
     def show
@@ -23,6 +27,11 @@ class AreasController < ApplicationController
         @area = Area.find(params[:id])
         @area.update(area_params)
         redirect_to "/areas/#{@area.id}"
+    end
+
+    def destroy
+        Area.destroy(params[:id])
+        redirect_to '/areas'
     end
 
     private

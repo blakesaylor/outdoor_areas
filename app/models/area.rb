@@ -1,5 +1,5 @@
 class Area < ApplicationRecord
-    has_many :climbs
+    has_many :climbs, dependent: :destroy
     validates_presence_of :name 
     validates_presence_of :state 
     validates :rock_climbing, inclusion: [true, false]
@@ -13,5 +13,9 @@ class Area < ApplicationRecord
 
     def count_of_climbs
         climbs.count
+    end
+
+    def self.filter_by_name_exact(exact_name)
+        where("name LIKE '#{exact_name}'")
     end
 end

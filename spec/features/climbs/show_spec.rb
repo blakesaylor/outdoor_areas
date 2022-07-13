@@ -108,7 +108,61 @@ RSpec.describe 'climbs show by id', type: :feature do
                                         pitches:4)
 
         visit "climbs/#{climb_1.id}"
-
+        
         expect(page).to have_link('Update Climb', href: "/climbs/#{climb_1.id}/edit")
+    end
+
+    # User Story 20, Child Delete 
+    # As a visitor
+    # When I visit a child show page
+    # Then I see a link to delete the child "Delete Child"
+    # When I click the link
+    # Then a 'DELETE' request is sent to '/child_table_name/:id',
+    # the child is deleted,
+    # and I am redirected to the child index page where I no longer see this child
+    it 'has a button that deletes the climb and redirects to the climbs index when clicked' do
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+
+        area_2 = Area.create!(  name:'Boulder Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7126, 
+                                latitude: 40.002, 
+                                longitude: -105.41)
+
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
+                                        top_rope: false,    
+                                        grade:'5.8', 
+                                        pitches:4)
+
+        climb_2 = area_1.climbs.create!(name: "Guppy", 
+                                        top_rope: true, 
+                                        grade:'5.8', 
+                                        pitches:1)
+
+        visit "/climbs/"
+
+        # Climb won't show up if top_rope isn't true
+        expect(page).to_not have_content(climb_1.name)
+
+        # Climb will show up if top_rope is true
+        expect(page).to have_content(climb_2.name)
+
+        visit "/climbs/#{climb_2.id}"
+        
+        expect(page).to have_button('Delete Climb')
+
+        click_button 'Delete Climb'
+
+        expect(current_path).to eq '/climbs'
+
+        expect(page).to_not have_content(climb_1.name)
+        expect(page).to_not have_content(climb_2.name)
+        expect(Climb.where(id: climb_2.id)).to eq []
     end
 end

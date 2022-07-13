@@ -1,9 +1,21 @@
 <%= link_to 'Areas Index', '/areas' %> | <%= link_to 'Climbs Index', '/climbs' %>
 <h1> Areas </h1>
+<%= button_to 'Show All Areas', '/areas', method: :get %>
+<%= form_with url: "/areas?exact_name=#{:exact}", method: :get, local: true, skip_enforcing_utf8: true do |form| %>
+    <div>
+        <p>
+            Only show areas with <%= form.text_field :exact, value: params[:exact] %> in the name (exact match).
+            <%= form.submit "Search by Name", name: nil %>
+        </p>
+    </div>
+<% end %>
 <ul>
     <% @areas.each_with_index do |area, index| %>
     <div id="area-<%=index%>">
-        <li><strong>Name: </strong><%= area.name %> | <a href="/areas/<%="#{area.id}"%>/edit">Edit Area</a></li>
+        <li><strong>Name: </strong><%= area.name %> | 
+        <%= link_to "View Area", "/areas/#{area.id}" %> | 
+        <%= link_to 'Edit Area', "/areas/#{area.id}/edit" %> | 
+        <%= link_to 'Delete Area', "/areas/#{area.id}", method: :delete %>
         <ul>
             <li>
                 <strong>Created At: </strong><%= area.created_at %>

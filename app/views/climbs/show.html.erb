@@ -9,4 +9,7 @@
     <li><strong>Created At: </strong><%= @climb.created_at %></li>
     <li><strong>Updated At: </strong><%= @climb.updated_at %></li>
 </ul>
-<p><a href="/climbs/<%= "#{@climb.id}" %>/edit">Update Climb</a></p>
+<%= link_to 'Update Climb', "/climbs/#{@climb.id}/edit" %>
+<br>
+<br>
+<%= button_to 'Delete Climb', "/climbs/#{@climb.id}", method: :delete %>

@@ -134,4 +134,123 @@ RSpec.describe 'climbs index', type: :feature do
             expect(current_path).to eq("/climbs/#{climb_1.id}/edit")
         end
     end
+
+    # User Story 23, Child Delete From Childs Index Page 
+    # As a visitor
+    # When I visit the `child_table_name` index page or a parent `child_table_name` index page
+    # Next to every child, I see a link to delete that child
+    # When I click the link
+    # I should be taken to the `child_table_name` index page where I no longer see that child
+    it 'has a button to delete a climb' do
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
+                                        top_rope:true,    
+                                        grade:'5.8', 
+                                        pitches:4)
+
+        climb_2 = area_1.climbs.create!(name: "Staff", 
+                                        top_rope: true, 
+                                        grade:'5.9', 
+                                        pitches:1)
+
+        visit '/climbs'
+
+        within '#climb-0' do
+            expect(page).to have_link('Delete Climb')
+        end
+    end
+
+    it 'deletes the area and all children when the delete button is pushed' do
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
+                                        top_rope:true,    
+                                        grade:'5.8', 
+                                        pitches:4)
+
+        area_2 = Area.create!(  name:'Boulder Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7126, 
+                                latitude: 40.002, 
+                                longitude: -105.41)
+
+        visit '/climbs'
+
+        within '#climb-0' do
+            expect(page).to have_content("Playin' Hooky")
+            expect(page).to have_link('Delete Climb')
+            click_link 'Delete Climb'
+        end
+
+        expect(current_path).to eq('/climbs')
+
+        expect(page).to_not have_content('#climb-0')
+    end
+
+    # Extension 1:
+    # Search by name (exact match)
+    # As a visitor
+    # When I visit an index page ('/parents') or ('/child_table_name')
+    # Then I see a text box to filter results by keyword
+    # When I type in a keyword that is an exact match of one or more of my records and press the Search button
+    # Then I only see records that are an exact match returned on the page
+    it 'has a text box to filter results by exact name' do
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
+                                        top_rope:true,    
+                                        grade:'5.8', 
+                                        pitches:4)
+
+        visit '/climbs'
+
+        expect(page).to have_button('Search by Name')
+    end
+
+    it 'filters climbs by exact name search' do
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
+                                        top_rope:true,    
+                                        grade:'5.8', 
+                                        pitches:4)
+
+        climb_2 = area_1.climbs.create!(name: "Staff", 
+                                        top_rope: true, 
+                                        grade:'5.9', 
+                                        pitches:1)
+
+        visit '/climbs'
+
+        expect(page).to have_content("Playin' Hooky")
+        expect(page).to have_content("Staff")
+
+        fill_in 'exact', with: 'Staff'
+        click_on 'Search'
+
+        expect(page).to_not have_content("Playin' Hooky")
+        expect(page).to have_content("Staff")
+    end
 end

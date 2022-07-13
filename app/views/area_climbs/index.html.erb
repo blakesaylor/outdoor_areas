@@ -1,6 +1,16 @@
 <%= link_to 'Areas Index', '/areas' %> | <%= link_to 'Climbs Index', '/climbs' %>
 <h1>Climbs in <%= @area.name %></h1>
 <a href="/areas/<%= @area.id %>/climbs?sort=alpha">Display in Alphabetical Order</a>
+
+<%= form_with url: "/areas/#{@area.id}/climbs?min_pitches=#{:minimum}", method: :get, local: true, skip_enforcing_utf8: true do |form| %>
+    <div>
+        <p>
+            Only show climbs with <%= form.number_field :minimum, value: params[:minimum] %> or more pitches.
+            <%= form.submit "Filter by Pitches", name: nil %>
+        </p>
+    </div>
+<% end %>
+
 <div>
     <% @climbs.each_with_index do |climb, index| %>
         <div id="climb-<%= index %>">

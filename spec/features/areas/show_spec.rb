@@ -171,4 +171,42 @@ RSpec.describe 'areas show by id' do
 
         expect(page).to have_link('Update Area', href: "/areas/#{area_1.id}/edit")
     end
+
+    # User Story 19, Parent Delete 
+    # As a visitor
+    # When I visit a parent show page
+    # Then I see a link to delete the parent
+    # When I click the link "Delete Parent"
+    # Then a 'DELETE' request is sent to '/parents/:id',
+    # the parent is deleted, and all child records are deleted
+    # and I am redirected to the parent index page where I no longer see this parent
+    it 'has a button that deletes the area and redirects to the areas index when clicked' do
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
+                                        top_rope: false,    
+                                        grade:'5.8', 
+                                        pitches:4)
+        
+        visit '/areas'
+
+        # Check if area is initially in index
+        expect(page).to have_content('Name: ' + area_1.name)
+
+        # Visit area show page and click delete
+        visit "/areas/#{area_1.id}"
+        expect(page).to have_button('Delete Area')
+        click_button 'Delete Area'
+
+        # Check if area is no longer in index
+        expect(current_path).to eq '/areas'
+        expect(page).to_not have_content('Name: ' + area_1.name)
+        expect(Area.where(id: area_1.id)).to eq []
+        expect(Climb.where(id: climb_1.id)).to eq []
+    end
 end

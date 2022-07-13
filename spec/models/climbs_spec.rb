@@ -78,5 +78,63 @@ RSpec.describe Climb, type: :model do
                 expect(area_1.climbs.alphabetical).to eq [climb_2, climb_1]
             end
         end
+
+        describe 'filter_by_pitches' do
+            it 'returns an array of climbs in alphabetical order' do
+                area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                        state:'Colorado', 
+                                        rock_climbing: true, 
+                                        elevation: 7400, 
+                                        latitude: 39.741, 
+                                        longitude: -105.41)
+
+                area_2 = Area.create!(  name:'Boulder Canyon', 
+                                        state:'Colorado', 
+                                        rock_climbing: true, 
+                                        elevation: 7126,
+                                        latitude: 40.002, 
+                                        longitude: -105.41)
+
+                climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
+                                                top_rope:false, 
+                                                grade:'5.8', 
+                                                pitches:4)
+
+                climb_2 = area_1.climbs.create!(name: "Guppy", 
+                                                top_rope: true, 
+                                                grade:'5.8', 
+                                                pitches:1)
+
+                #unalphabetized
+                expect(area_1.climbs).to eq [climb_1, climb_2]
+
+                #alphabetized
+                expect(area_1.climbs.filter_by_pitches(3)).to eq [climb_1]
+            end
+        end
+
+        describe 'filter_by_name_exact' do
+            it 'allows for filtering by an exact name search' do
+                area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                        state:'Colorado', 
+                                        rock_climbing: true, 
+                                        elevation: 7400, 
+                                        latitude: 39.741, 
+                                        longitude: -105.41)
+
+                climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
+                                                top_rope:false, 
+                                                grade:'5.8', 
+                                                pitches:4)
+
+                climb_2 = area_1.climbs.create!(name: "Guppy", 
+                                                top_rope: true, 
+                                                grade:'5.8', 
+                                                pitches:1)
+
+                expect(Climb.all).to eq [climb_1, climb_2]
+                expect(Climb.filter_by_name_exact('Guppy')).to eq [climb_2]
+            end
+        end
     end
 end

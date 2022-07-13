@@ -215,4 +215,42 @@ RSpec.describe 'area climbs index', type: :feature do
             expect(current_path).to eq("/climbs/#{climb_1.id}/edit")
         end
     end
+
+    # User Story 21, Display Records Over a Given Threshold 
+    # As a visitor
+    # When I visit the Parent's children Index Page
+    # I see a form that allows me to input a number value
+    # When I input a number value and click the submit button that reads 'Only return records with more than `number` of `column_name`'
+    # Then I am brought back to the current index page with only the records that meet that threshold shown.
+    it 'allows users to input a value of pitches and only show climbs with over that number of pitches' do
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+
+        climb_2 = area_1.climbs.create!(name: "Guppy", 
+                                        top_rope: true, 
+                                        grade: '5.8', 
+                                        pitches: 1)
+
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
+                                        top_rope: false,    
+                                        grade: '5.8', 
+                                        pitches: 4)
+
+        visit "areas/#{area_1.id}/climbs"
+
+        expect(page).to have_content('Guppy')
+        expect(page).to have_content("Playin' Hooky")
+        expect(page).to have_button('Filter by Pitches')
+
+        fill_in 'minimum', with: '3'
+
+        click_on 'Filter by Pitches'
+
+        expect(page).to_not have_content('Guppy')
+        expect(page).to have_content("Playin' Hooky")
+    end
 end

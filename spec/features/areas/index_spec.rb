@@ -154,4 +154,169 @@ RSpec.describe 'areas index', type: :feature do
             expect(page).to have_link('Edit Area', href: "/areas/#{area_1.id}/edit")
         end
     end
+
+    it 'takes the user to the edit page when the edit button is pressed' do
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+
+        area_2 = Area.create!(  name:'Boulder Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7126, 
+                                latitude: 40.002, 
+                                longitude: -105.41)
+        
+        visit '/areas'
+
+        within '#area-0' do
+            expect(page).to have_link('Edit Area')
+            click_link 'Edit Area'
+            expect(current_path).to eq "/areas/#{area_2.id}/edit"
+        end
+    end
+
+    # User Story 22, Parent Delete From Parent Index Page 
+    # As a visitor
+    # When I visit the parent index page
+    # Next to every parent, I see a link to delete that parent
+    # When I click the link
+    # I am returned to the Parent Index Page where I no longer see that parent
+    it 'has a button to delete an area and all children' do
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
+                                        top_rope:false,    
+                                        grade:'5.8', 
+                                        pitches:4)
+
+        visit '/areas'
+
+        within '#area-0' do
+            expect(page).to have_link('Delete Area')
+        end
+    end
+
+    it 'deletes the area and all children when the delete button is pushed' do
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
+                                        top_rope:false,    
+                                        grade:'5.8', 
+                                        pitches:4)
+
+        area_2 = Area.create!(  name:'Boulder Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7126, 
+                                latitude: 40.002, 
+                                longitude: -105.41)
+
+        visit '/areas'
+
+        within '#area-0' do
+            expect(page).to have_link('Delete Area')
+            click_link 'Delete Area'
+        end
+
+        expect(current_path).to eq('/areas')
+
+        within '#area-0' do
+            expect(page).to have_content('Name: ' + area_1.name)
+        end
+    end
+
+    # Additional Functionality
+    it 'has a button to go to the show page for climbs' do
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
+                                        top_rope:false,    
+                                        grade:'5.8', 
+                                        pitches:4)
+
+        visit '/areas'
+
+        within '#area-0' do
+            expect(page).to have_link('View Area')
+            click_link 'View Area'
+        end
+
+        expect(current_path).to eq("/areas/#{area_1.id}")
+    end
+
+    # Extension 1:
+    # Search by name (exact match)
+    # As a visitor
+    # When I visit an index page ('/parents') or ('/child_table_name')
+    # Then I see a text box to filter results by keyword
+    # When I type in a keyword that is an exact match of one or more of my records and press the Search button
+    # Then I only see records that are an exact match returned on the page
+    it 'has a text box to filter results by exact name' do
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
+                                        top_rope:true,    
+                                        grade:'5.8', 
+                                        pitches:4)
+
+        visit '/areas'
+
+        expect(page).to have_button('Search by Name')
+    end
+
+    it 'filters areas by exact name search' do
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
+                                        top_rope:false,    
+                                        grade:'5.8', 
+                                        pitches:4)
+
+        area_2 = Area.create!(  name:'Boulder Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7126, 
+                                latitude: 40.002, 
+                                longitude: -105.41)
+
+        visit '/areas'
+
+        expect(page).to have_content("Clear Creek Canyon")
+        expect(page).to have_content("Boulder Canyon")
+
+        fill_in 'exact', with: 'Boulder Canyon'
+        click_on 'Search'
+
+        expect(page).to_not have_content("Clear Creek Canyon")
+        expect(page).to have_content("Boulder Canyon")
+    end
 end
