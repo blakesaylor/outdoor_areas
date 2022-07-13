@@ -24,10 +24,50 @@ boulder_canyon = Area.create!(  name:'Boulder Canyon',
 
 playin_hooky = clear_creek.climbs.create!(  name: "Playin' Hooky", 
                                             top_rope: false, 
-                                            grade:'5.8', 
-                                            pitches:4)
+                                            grade: '5.8', 
+                                            pitches: 4)
 
-guppy = clear_creek.climbs.create!( name: "Guppy", 
+guppy = clear_creek.climbs.create!(         name: "Guppy", 
                                             top_rope: true, 
-                                            grade:'5.8', 
-                                            pitches:1)
+                                            grade: '5.8', 
+                                            pitches: 1)
+
+curvaceous = clear_creek.climbs.create!(    name: "Curvaceous", 
+                                            top_rope: false, 
+                                            grade: '5.11b', 
+                                            pitches: 1)
+
+walking_with_a_ghost = clear_creek.climbs.create!(  name: "Walking With A Ghost", 
+                                                    top_rope: true, 
+                                                    grade: '5.11b', 
+                                                    pitches: 1)
+
+solid_gold = clear_creek.climbs.create!(    name: "Solid Gold", 
+                                            top_rope: false, 
+                                            grade: '5.12a', 
+                                            pitches: 5)
+
+cosmosis = boulder_canyon.climbs.create!(   name: "Cosmosis", 
+                                            top_rope: false, 
+                                            grade: '5.10a', 
+                                            pitches: 2)
+
+aardvark = boulder_canyon.climbs.create!(   name: "Aardvark", 
+                                            top_rope: true, 
+                                            grade: '5.9-', 
+                                            pitches: 1)
+
+baby_dog = boulder_canyon.climbs.create!(   name: "Buried Treasure", 
+                                            top_rope: false, 
+                                            grade: '5.9-', 
+                                            pitches: 2)
+
+the_memory_of_trees = boulder_canyon.climbs.create!(name: "The Memory of Trees", 
+                                                    top_rope: true, 
+                                                    grade: '5.9', 
+                                                    pitches: 1)
+
+tower_of_power = boulder_canyon.climbs.create!( name: "Tower of Power", 
+                                                top_rope: true, 
+                                                grade:'5.10b', 
+                                                pitches: 1)
