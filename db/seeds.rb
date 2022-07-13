@@ -22,6 +22,13 @@ boulder_canyon = Area.create!(  name:'Boulder Canyon',
                                 latitude: 40.002, 
                                 longitude: -105.41)
 
+wichita_mountains = Area.create!(   name:'Wichita Mountains', 
+                                    state:'Oklahoma', 
+                                    rock_climbing: true, 
+                                    elevation: 1488, 
+                                    latitude: 34.711, 
+                                    longitude: -98.623)
+
 playin_hooky = clear_creek.climbs.create!(  name: "Playin' Hooky", 
                                             top_rope: false, 
                                             grade: '5.8', 
@@ -71,3 +78,14 @@ tower_of_power = boulder_canyon.climbs.create!( name: "Tower of Power",
                                                 top_rope: true, 
                                                 grade:'5.10b', 
                                                 pitches: 1)
+
+great_expectations = wichita_mountains.climbs.create!(  name: "Great Expectations", 
+                                                        top_rope: false, 
+                                                        grade:'5.5', 
+                                                        pitches: 1)
+
+come_and_get_your_love = wichita_mountains.climbs.create!( 
+    name: "Come and Get Your Love", 
+    top_rope: true, 
+    grade:'5.10a', 
+    pitches: 1)
