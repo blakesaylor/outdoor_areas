@@ -1,6 +1,6 @@
 <%= link_to 'Areas Index', '/areas' %> | <%= link_to 'Climbs Index', '/climbs' %>
 <h1>Update <%= @climb.name %></h1>
-<%= form_with url: "/climbs/#{@climb.id}/", method: :patch, local: true do |form| %>
+<%= form_with url: "/climbs/#{@climb.id}", method: :patch, local: true do |form| %>
   <div>
     <%= form.label :name %>
     <%= form.text_field :name, value: @climb.name %>
