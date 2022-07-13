@@ -239,4 +239,28 @@ RSpec.describe 'areas index', type: :feature do
         end
     end
 
+    # Additional Functionality
+    it 'has a button to go to the show page for climbs' do
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
+                                        top_rope:false,    
+                                        grade:'5.8', 
+                                        pitches:4)
+
+        visit '/areas'
+
+        within '#area-0' do
+            expect(page).to have_link('View Area')
+            click_link 'View Area'
+        end
+
+        expect(current_path).to eq("/areas/#{area_1.id}")
+    end
+
 end
