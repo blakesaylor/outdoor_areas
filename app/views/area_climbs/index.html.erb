@@ -5,8 +5,8 @@
 <%= form_with url: "/areas/#{@area.id}/climbs?min_pitches=#{:minimum}", method: :get, local: true, skip_enforcing_utf8: true do |form| %>
     <div>
         <p>
-            Only show climbs with <%= form.number_field :minimum %> or more pitches.
-            <%= form.submit 'Filter by Pitches', name: nil %>
+            Only show climbs with <%= form.number_field :minimum, value: params[:minimum] %> or more pitches.
+            <%= form.submit "Filter by Pitches", name: nil %>
         </p>
     </div>
 <% end %>
