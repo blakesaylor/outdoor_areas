@@ -14,10 +14,10 @@ class Climb < ApplicationRecord
     end
 
     def self.filter_by_pitches(filter_value)
-        Climb.where("pitches >= #{filter_value}")
+        where("pitches >= #{filter_value}")
     end
 
     def self.filter_by_name_exact(exact_name)
-        Climb.where("name LIKE '#{exact_name}'")
+        where("name LIKE '#{exact_name}'")
     end
 end

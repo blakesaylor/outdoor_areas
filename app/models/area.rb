@@ -14,4 +14,8 @@ class Area < ApplicationRecord
     def count_of_climbs
         climbs.count
     end
+
+    def self.filter_by_name_exact(exact_name)
+        where("name LIKE '#{exact_name}'")
+    end
 end
