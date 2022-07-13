@@ -154,4 +154,89 @@ RSpec.describe 'areas index', type: :feature do
             expect(page).to have_link('Edit Area', href: "/areas/#{area_1.id}/edit")
         end
     end
+
+    it 'takes the user to the edit page when the edit button is pressed' do
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+
+        area_2 = Area.create!(  name:'Boulder Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7126, 
+                                latitude: 40.002, 
+                                longitude: -105.41)
+        
+        visit '/areas'
+
+        within '#area-0' do
+            expect(page).to have_link('Edit Area')
+            click_link 'Edit Area'
+            expect(current_path).to eq "/areas/#{area_2.id}/edit"
+        end
+    end
+
+    # User Story 22, Parent Delete From Parent Index Page 
+    # As a visitor
+    # When I visit the parent index page
+    # Next to every parent, I see a link to delete that parent
+    # When I click the link
+    # I am returned to the Parent Index Page where I no longer see that parent
+    it 'has a button to delete an area and all children' do
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
+                                        top_rope:false,    
+                                        grade:'5.8', 
+                                        pitches:4)
+
+        visit '/areas'
+
+        within '#area-0' do
+            expect(page).to have_link('Delete Area')
+        end
+    end
+
+    it 'deletes the area and all children when the delete button is pushed' do
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
+                                        top_rope:false,    
+                                        grade:'5.8', 
+                                        pitches:4)
+
+        area_2 = Area.create!(  name:'Boulder Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7126, 
+                                latitude: 40.002, 
+                                longitude: -105.41)
+
+        visit '/areas'
+
+        within '#area-0' do
+            expect(page).to have_link('Delete Area')
+            click_link 'Delete Area'
+        end
+
+        expect(current_path).to eq('/areas')
+
+        within '#area-0' do
+            expect(page).to have_content('Name: ' + area_1.name)
+        end
+    end
+
 end
