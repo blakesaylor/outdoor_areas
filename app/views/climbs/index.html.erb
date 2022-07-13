@@ -1,9 +1,18 @@
 <%= link_to 'Areas Index', '/areas' %> | <%= link_to 'Climbs Index', '/climbs' %>
 <h1>Climbs</h1>
+<%= button_to 'Show All Climbs', '/climbs', method: :get %>
+<%= form_with url: "/climbs?exact_name=#{:exact}", method: :get, local: true, skip_enforcing_utf8: true do |form| %>
+    <div>
+        <p>
+            Only show climbs with <%= form.text_field :exact, value: params[:exact] %> in the name (exact match).
+            <%= form.submit "Search by Name", name: nil %>
+        </p>
+    </div>
+<% end %>
 <ul>
     <% @climbs.show_top_ropeable.each_with_index do |climb, index| %>
         <div id="climb-<%=index%>">
-            <li><strong><%= climb.name %></strong> | 
+            <li><strong style="font-size:150%"><%= climb.name %></strong> | 
             <%= link_to "View Climb", "/climbs/#{climb.id}" %> | 
             <%= link_to "Edit Climb", "/climbs/#{climb.id}/edit" %> |
             <%= link_to "Delete Climb", "/climbs/#{climb.id}", method: :delete %>
