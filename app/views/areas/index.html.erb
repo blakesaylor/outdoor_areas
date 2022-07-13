@@ -3,7 +3,7 @@
 <ul>
     <% @areas.each_with_index do |area, index| %>
     <div id="area-<%=index%>">
-        <li><strong>Name: </strong><%= area.name %> | <%= link_to 'Edit Area', "/areas/#{area.id}/edit" %> | <%= link_to 'Delete Area', "/areas/#{area.id}", method: :delete %>
+        <li><strong>Name: </strong><%= area.name %> | <%= link_to "View Area", "/areas/#{area.id}" %> | <%= link_to 'Edit Area', "/areas/#{area.id}/edit" %> | <%= link_to 'Delete Area', "/areas/#{area.id}", method: :delete %>
         <ul>
             <li>
                 <strong>Created At: </strong><%= area.created_at %>
