@@ -198,4 +198,59 @@ RSpec.describe 'climbs index', type: :feature do
 
         expect(page).to_not have_content('#climb-0')
     end
+
+    # Extension 1:
+    # Search by name (exact match)
+    # As a visitor
+    # When I visit an index page ('/parents') or ('/child_table_name')
+    # Then I see a text box to filter results by keyword
+    # When I type in a keyword that is an exact match of one or more of my records and press the Search button
+    # Then I only see records that are an exact match returned on the page
+    it 'has a text box to filter results by exact name' do
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
+                                        top_rope:true,    
+                                        grade:'5.8', 
+                                        pitches:4)
+
+        visit '/climbs'
+
+        expect(page).to have_button('Search by Name')
+    end
+
+    it 'filters climbs by exact name search' do
+        area_1 = Area.create!(  name:'Clear Creek Canyon', 
+                                state:'Colorado', 
+                                rock_climbing: true, 
+                                elevation: 7400, 
+                                latitude: 39.741, 
+                                longitude: -105.41)
+
+        climb_1 = area_1.climbs.create!(name: "Playin' Hooky",
+                                        top_rope:true,    
+                                        grade:'5.8', 
+                                        pitches:4)
+
+        climb_2 = area_1.climbs.create!(name: "Staff", 
+                                        top_rope: true, 
+                                        grade:'5.9', 
+                                        pitches:1)
+
+        visit '/climbs'
+
+        expect(page).to have_content("Playin' Hooky")
+        expect(page).to have_content("Staff")
+
+        fill_in 'exact', with: 'Staff'
+        click_on 'Search'
+
+        expect(page).to_not have_content("Playin' Hooky")
+        expect(page).to have_content("Staff")
+    end
 end
