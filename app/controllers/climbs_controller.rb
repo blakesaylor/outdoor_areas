@@ -19,7 +19,7 @@ class ClimbsController < ApplicationController
 
     def destroy
         Climb.destroy(params[:id])
-        redirect_to '/climbs/'
+        redirect_to '/climbs'
     end
 
     private
