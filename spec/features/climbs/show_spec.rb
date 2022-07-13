@@ -159,7 +159,7 @@ RSpec.describe 'climbs show by id', type: :feature do
 
         click_button 'Delete Climb'
 
-        expect(current_path).to eq '/climbs/'
+        expect(current_path).to eq '/climbs'
 
         expect(page).to_not have_content(climb_1.name)
         expect(page).to_not have_content(climb_2.name)
