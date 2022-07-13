@@ -8,10 +8,14 @@
             <%= link_to "Edit Climb", "/climbs/#{climb.id}/edit" %> |
             <%= link_to "Delete Climb", "/climbs/#{climb.id}", method: :delete %>
             <ul>
-                <li>
-                    <strong>Created At: </strong><%= climb.created_at %>
-                </li>
+                <!-- <li><strong>Area Name: </strong><%= Area.find(climb.area_id).name %></li> -->
+                <li><strong>Top Ropeable? </strong><%= climb.top_rope %></li>
+                <li><strong>Grade: </strong><%= climb.grade %></li>
+                <li><strong>Pitches: </strong><%= climb.pitches %></li>
+                <li><strong>Created At: </strong><%= climb.created_at %></li>
+                <li><strong>Updated At: </strong><%= climb.updated_at %></li>
             </ul>
+            <br>
         </div>
     <% end %>
 </ul>
