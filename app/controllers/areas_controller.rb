@@ -1,6 +1,10 @@
 class AreasController < ApplicationController
     def index
-        @areas = Area.sort_by_created_datetime
+        if params[:exact] != nil
+            @areas = Area.filter_by_name_exact(params[:exact])
+        else
+            @areas = Area.sort_by_created_datetime
+        end
     end
 
     def show
